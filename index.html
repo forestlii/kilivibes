@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KILI VIBES & ADVENTURES — Kilimanjaro Treks & Safaris</title>
+<style>
+/* ===== RESET & VARIABLES ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root {
+  --brown: #5c3d2e;
+  --gold: #c4944a;
+  --cream: #faf8f3;
+  --white: #ffffff;
+  --dark: #3d2b1f;
+  --text: #3d2b1f;
+  --text-light: #8a7a6a;
+  --border: #f0ebe0;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --nav-h: 64px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== NAVIGATION ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 32px; height: var(--nav-h);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+.nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 1px 0 var(--border); }
+.nav-logo {
+  font-weight: 700; font-size: 15px; letter-spacing: 1px;
+  color: #fff; text-decoration: none; transition: color 0.3s;
+}
+.nav.scrolled .nav-logo { color: var(--brown); }
+.nav-links {
+  display: flex; gap: 24px; list-style: none;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.3s;
+}
+.nav.scrolled .nav-links a { color: var(--text-light); }
+.nav-links a:hover { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.lang-toggle {
+  background: none; border: 1px solid rgba(255,255,255,0.5); color: #fff;
+  padding: 4px 10px; font-size: 10px; letter-spacing: 1px; cursor: pointer;
+  border-radius: 2px; transition: all 0.3s;
+}
+.nav.scrolled .lang-toggle { border-color: var(--brown); color: var(--brown); }
+.lang-toggle:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.menu-btn {
+  display: none; background: none; border: none; color: #fff;
+  font-size: 24px; cursor: pointer;
+}
+.nav.scrolled .menu-btn { color: var(--brown); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; height: 100vh; min-height: 600px;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center; color: #fff; overflow: hidden;
+  background: linear-gradient(135deg, #5c3d2e, #8b6914, #c4944a);
+}
+.hero-video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover; pointer-events: none;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 100%);
+}
+.hero-content { position: relative; z-index: 1; padding: 0 24px; }
+.hero-icon { font-size: 56px; margin-bottom: 16px; }
+.hero-title {
+  font-size: clamp(36px, 6vw, 64px); font-weight: 300;
+  letter-spacing: 4px; line-height: 1.15;
+}
+.hero-subtitle {
+  font-size: clamp(12px, 1.5vw, 16px); font-weight: 300;
+  opacity: 0.8; margin-top: 8px; letter-spacing: 6px;
+}
+.hero-cta {
+  display: inline-block; margin-top: 32px;
+  background: var(--white); color: var(--brown);
+  padding: 14px 40px; border-radius: 2px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; transition: all 0.3s;
+}
+.hero-cta:hover { background: var(--gold); color: #fff; }
+
+/* ===== SECTION COMMONS ===== */
+.section { padding: 100px 32px; }
+.section-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 8px; text-align: center;
+}
+.section-title {
+  font-size: clamp(24px, 4vw, 36px); font-weight: 300;
+  letter-spacing: 1px; text-align: center; margin-bottom: 48px;
+}
+.container { max-width: 1100px; margin: 0 auto; }
+
+/* ===== GRID NAV (4 squares) ===== */
+.grid-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; background: var(--border); padding: 4px; }
+.grid-card {
+  position: relative; aspect-ratio: 1; display: flex; align-items: flex-end;
+  padding: 32px; color: #fff; cursor: pointer; overflow: hidden;
+  text-decoration: none; transition: transform 0.3s;
+}
+.grid-card:hover { transform: scale(0.98); }
+.grid-card-bg {
+  position: absolute; inset: 0; background-size: cover; background-position: center;
+  transition: transform 0.6s;
+}
+.grid-card:hover .grid-card-bg { transform: scale(1.05); }
+.grid-card-content { position: relative; z-index: 1; }
+.grid-card-title { font-size: 24px; font-weight: 300; letter-spacing: 1px; }
+.grid-card-desc { font-size: 11px; opacity: 0.7; font-weight: 400; margin-top: 4px; }
+.grid-card:nth-child(1) .grid-card-bg { background: linear-gradient(135deg, #5c3d2e, #8b6914), url('Photos/Safari/46f08f41b1f24caf96aaa8886172428e.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; }
+.grid-card:nth-child(2) .grid-card-bg { background: linear-gradient(135deg, #8b6914, #b8933c), url('Photos/Safari/57057f230bb44111b0773def9593d22b(1).jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; }
+.grid-card:nth-child(3) .grid-card-bg { background: linear-gradient(135deg, #7a5c3e, #c4a882), url('Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.22.jpeg'); background-size: cover; background-position: center; background-blend-mode: overlay; }
+.grid-card:nth-child(4) .grid-card-bg { background: linear-gradient(135deg, #6b5038, #a0845c), url('Photos/Safari/5ccd311ba0d64ca4ae18d0248ecf7d73.jpg'); background-size: cover; background-position: center; background-blend-mode: overlay; }
+
+/* ===== CARDS ===== */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+.card {
+  background: var(--white); border-radius: 2px; overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.card-img { height: 220px; background-size: cover; background-position: center; }
+.card-body { padding: 24px; }
+.card-title { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+.card-info { font-size: 12px; color: var(--text-light); }
+.card-days { font-size: 11px; color: var(--gold); margin-top: 8px; letter-spacing: 1px; }
+
+/* ===== GALLERY STRIP ===== */
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+.gallery-item { aspect-ratio: 4/5; background-size: cover; background-position: center; }
+
+/* ===== ABOUT ===== */
+.about { text-align: center; }
+.about-quote {
+  font-size: clamp(18px, 3vw, 24px); font-weight: 300; font-style: italic;
+  max-width: 700px; margin: 0 auto 32px; line-height: 1.6; color: var(--text-light);
+}
+.about-name { font-size: 18px; font-weight: 500; }
+.about-role { font-size: 13px; color: var(--text-light); margin-top: 2px; }
+.video-wrap {
+  max-width: 720px; margin: 40px auto 0;
+  aspect-ratio: 16/9; border-radius: 2px; overflow: hidden;
+}
+.video-wrap iframe { width: 100%; height: 100%; border: 0; }
+
+/* ===== CTA ===== */
+.cta { text-align: center; background: var(--white); }
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
+.btn-outline {
+  border: 1px solid var(--border); padding: 12px 32px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; color: var(--brown); border-radius: 2px;
+  transition: all 0.3s; display: inline-block;
+}
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.btn-fill {
+  background: var(--brown); color: #fff;
+  padding: 12px 32px; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none; border-radius: 2px;
+  border: none; cursor: pointer; transition: background 0.3s; display: inline-block;
+}
+.btn-fill:hover { background: var(--gold); }
+
+/* ===== CONTACT FORM ===== */
+.contact-form {
+  max-width: 480px; margin: 32px auto 0; display: flex; flex-direction: column; gap: 12px;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 14px 16px; border: 1px solid var(--border);
+  border-radius: 2px; font-family: var(--font); font-size: 14px;
+  background: var(--cream); transition: border-color 0.3s;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none; border-color: var(--gold);
+}
+.contact-form textarea { resize: vertical; min-height: 100px; }
+
+/* ===== FOOTER ===== */
+.footer {
+  border-top: 1px solid var(--border); padding: 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; color: #bbb; letter-spacing: 1px; flex-wrap: wrap; gap: 12px;
+}
+
+/* ===== MODAL (detail view) ===== */
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 2000;
+  background: rgba(0,0,0,0.8); overflow-y: auto;
+}
+.modal.open { display: block; }
+.modal-content {
+  background: var(--white); max-width: 800px; margin: 60px auto;
+  border-radius: 2px; padding: 48px 32px; position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 20px;
+  background: none; border: none; font-size: 28px; cursor: pointer;
+  color: var(--text-light);
+}
+.modal-body h2 { font-size: 28px; font-weight: 300; letter-spacing: 1px; margin-bottom: 24px; }
+.modal-body h3 { font-size: 18px; font-weight: 500; margin: 24px 0 8px; color: var(--brown); }
+.modal-body p { font-size: 14px; color: var(--text-light); margin-bottom: 8px; line-height: 1.8; }
+.modal-body ul { list-style: none; padding: 0; }
+.modal-body ul li { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+.modal-body ul li::before { content: "· "; color: var(--gold); font-weight: bold; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: var(--nav-h); left: 0; right: 0; background: var(--white);
+    padding: 24px 32px; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .nav-links.open a { color: var(--brown); }
+  .menu-btn { display: block; }
+  .grid-nav { grid-template-columns: 1fr 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .section { padding: 60px 20px; }
+  .footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .grid-nav { grid-template-columns: 1fr; }
+  .gallery { grid-template-columns: 1fr 1fr; }
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#hero" class="nav-logo">KILI VIBES</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#treks-section" data-key="nav_treks">Mountaineering</a></li>
+    <li><a href="#safari-section" data-key="nav_safari">Safari</a></li>
+    <li><a href="#activities-section" data-key="nav_activities">Day Activities</a></li>
+    <li><a href="#about-section" data-key="nav_about">About</a></li>
+    <li><a href="#contact-section" data-key="nav_contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">中文</button>
+    <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">&#9776;</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <!-- Replace VIDEO_ID with your YouTube video ID and remove style="display:none" to enable video background -->
+  <iframe class="hero-video" src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID&controls=0&showinfo=0&rel=0&playsinline=1" allow="autoplay; fullscreen" style="display:none;" id="heroVideo"></iframe>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-icon">&#9968;</div>
+    <h1 class="hero-title">KILIMANJARO</h1>
+    <p class="hero-subtitle" data-key="hero_subtitle">THE ROOF OF AFRICA</p>
+    <a href="#treks-section" class="hero-cta" data-key="hero_cta">Explore Journeys</a>
+  </div>
+</section>
+
+<!-- GRID NAV -->
+<section class="grid-nav" id="gridNav">
+  <a href="#treks-section" class="grid-card"><div class="grid-card-bg"></div><div class="grid-card-content"><div class="grid-card-title" data-key="grid_treks">Mountaineering</div><div class="grid-card-desc">6 Routes · 6–10 Days</div></div></a>
+  <a href="#safari-section" class="grid-card"><div class="grid-card-bg"></div><div class="grid-card-content"><div class="grid-card-title" data-key="grid_safari">Safari</div><div class="grid-card-desc">8 Itineraries · 1–5 Days</div></div></a>
+  <a href="#activities-section" class="grid-card"><div class="grid-card-bg"></div><div class="grid-card-content"><div class="grid-card-title" data-key="grid_activities">Day Activities</div><div class="grid-card-desc">5 Tours · Arusha</div></div></a>
+  <a href="#about-section" class="grid-card"><div class="grid-card-bg"></div><div class="grid-card-content"><div class="grid-card-title" data-key="grid_about">About Raga Voice</div><div class="grid-card-desc">Guide · Musician · Storyteller</div></div></a>
+</section>
+
+<!-- FEATURED TREKS -->
+<section class="section" id="treks-section">
+  <div class="container">
+    <p class="section-label" data-key="treks_label">Mountaineering</p>
+    <h2 class="section-title" data-key="treks_title">Conquer the Roof of Africa</h2>
+    <div class="cards" id="treksCards"></div>
+  </div>
+</section>
+
+<!-- SAFARI -->
+<section class="section" id="safari-section" style="background:var(--white);">
+  <div class="container">
+    <p class="section-label" data-key="safari_label">Safari</p>
+    <h2 class="section-title" data-key="safari_title">Witness the Wild</h2>
+    <div class="cards" id="safariCards"></div>
+  </div>
+</section>
+
+<!-- DAY ACTIVITIES -->
+<section class="section" id="activities-section">
+  <div class="container">
+    <p class="section-label" data-key="activities_label">Day Activities</p>
+    <h2 class="section-title" data-key="activities_title">Explore Beyond the Summit</h2>
+    <div class="cards" id="activitiesCards"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="gallery-item" style="background-image:url('Photos/Day_Activities/5afc71d4bca843ca95a812782d7dc1bb.jpg');background-size:cover;background-position:center;"></div>
+  <div class="gallery-item" style="background-image:url('Photos/Safari/3ea593f25a884756beddbfca61dc4a34.jpg');background-size:cover;background-position:center;"></div>
+  <div class="gallery-item" style="background-image:url('Photos/Day_Activities/691660a7250e4f9aae3a7f2fdd1466aa.jpg');background-size:cover;background-position:center;"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about-section" style="background:var(--white);">
+  <div class="container">
+    <p class="section-label" data-key="about_label">About</p>
+    <h2 class="section-title" data-key="about_title">Meet Raga Voice</h2>
+    <p class="about-quote" data-key="about_quote">"Your adventure isn't just guided — it's soundtracked."</p>
+    <p class="about-name">Kauzen "Raga Voice" Geofrey</p>
+    <p class="about-role" data-key="about_role">Founder · Guide · Musician</p>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Raga Voice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section cta" id="contact-section">
+  <div class="container">
+    <h2 class="section-title" data-key="contact_title">Ready for Your Adventure?</h2>
+    <p style="color:var(--text-light);text-align:center;" data-key="contact_subtitle">We craft journeys that stay in your soul forever.</p>
+    <div class="cta-buttons">
+      <a href="https://wa.me/255XXXXXXXXX" class="btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:info@kilivibes.com" class="btn-fill" data-key="contact_email">Email Us</a>
+    </div>
+    <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
+      <input type="text" name="name" data-key-placeholder="form_name" placeholder="Your Name" required>
+      <input type="email" name="email" data-key-placeholder="form_email" placeholder="Your Email" required>
+      <textarea name="message" data-key-placeholder="form_message" placeholder="Tell us about your dream adventure..." required></textarea>
+      <button type="submit" class="btn-fill" data-key="form_send">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <span>KILI VIBES & ADVENTURES</span>
+  <span data-key="footer_location">Arusha · Tanzania · © 2026</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ===== MULTILINGUAL DATA (5 languages) =====
+const i18n = {
+  en: {
+    nav_treks: "Mountaineering", nav_safari: "Safari", nav_activities: "Day Activities",
+    nav_about: "About", nav_contact: "Contact",
+    hero_subtitle: "THE ROOF OF AFRICA", hero_cta: "Explore Journeys",
+    grid_treks: "Mountaineering", grid_safari: "Safari",
+    grid_activities: "Day Activities", grid_about: "About Raga Voice",
+    treks_label: "Mountaineering", treks_title: "Conquer the Roof of Africa",
+    safari_label: "Safari", safari_title: "Witness the Wild",
+    activities_label: "Day Activities", activities_title: "Explore Beyond the Summit",
+    about_label: "About", about_title: "Meet Raga Voice",
+    about_quote: "\"Your adventure isn't just guided — it's soundtracked.\"",
+    about_role: "Founder · Guide · Musician",
+    contact_title: "Ready for Your Adventure?",
+    contact_subtitle: "We craft journeys that stay in your soul forever.",
+    contact_email: "Email Us", form_send: "Send Message",
+    footer_location: "Arusha · Tanzania · © 2026",
+    form_name: "Your Name", form_email: "Your Email",
+    form_message: "Tell us about your dream adventure...",
+    alert_email: "Opening your email client..."
+  },
+  zh: {
+    nav_treks: "登山路线", nav_safari: "野生动物园", nav_activities: "一日游",
+    nav_about: "关于我们", nav_contact: "联系我们",
+    hero_subtitle: "非洲之巅", hero_cta: "探索旅程",
+    grid_treks: "登山路线", grid_safari: "野生动物园",
+    grid_activities: "一日游", grid_about: "认识 Raga Voice",
+    treks_label: "登山路线", treks_title: "征服非洲之巅",
+    safari_label: "野生动物园", safari_title: "见证野性之美",
+    activities_label: "一日游", activities_title: "探索山顶之外",
+    about_label: "关于我们", about_title: "认识 Raga Voice",
+    about_quote: "\"你的冒险不只是被引导——它会被谱写成曲。\"",
+    about_role: "创始人 · 向导 · 音乐人",
+    contact_title: "准备好你的冒险了吗？",
+    contact_subtitle: "我们打造留在你灵魂深处的旅程。",
+    contact_email: "发送邮件", form_send: "发送消息",
+    footer_location: "阿鲁沙 · 坦桑尼亚 · © 2026",
+    form_name: "你的名字", form_email: "你的邮箱",
+    form_message: "告诉我们你梦想的冒险...",
+    alert_email: "正在打开你的邮件客户端..."
+  },
+  fr: {
+    nav_treks: "Alpinisme", nav_safari: "Safari", nav_activities: "Excursions",
+    nav_about: "À Propos", nav_contact: "Contact",
+    hero_subtitle: "LE TOIT DE L'AFRIQUE", hero_cta: "Explorer Nos Voyages",
+    grid_treks: "Alpinisme", grid_safari: "Safari",
+    grid_activities: "Excursions", grid_about: "Raga Voice",
+    treks_label: "Alpinisme", treks_title: "Conquérez le Toit de l'Afrique",
+    safari_label: "Safari", safari_title: "Témoin de la Vie Sauvage",
+    activities_label: "Excursions", activities_title: "Explorez Au-delà du Sommet",
+    about_label: "À Propos", about_title: "Rencontrez Raga Voice",
+    about_quote: "\"Votre aventure n'est pas seulement guidée — elle est mise en musique.\"",
+    about_role: "Fondateur · Guide · Musicien",
+    contact_title: "Prêt pour Votre Aventure ?",
+    contact_subtitle: "Nous créons des voyages qui restent gravés dans votre âme.",
+    contact_email: "Envoyez un Email", form_send: "Envoyer",
+    footer_location: "Arusha · Tanzanie · © 2026",
+    form_name: "Votre Nom", form_email: "Votre Email",
+    form_message: "Parlez-nous de votre aventure de rêve...",
+    alert_email: "Ouverture de votre client de messagerie..."
+  },
+  nl: {
+    nav_treks: "Bergbeklimmen", nav_safari: "Safari", nav_activities: "Dagactiviteiten",
+    nav_about: "Over Ons", nav_contact: "Contact",
+    hero_subtitle: "HET DAK VAN AFRIKA", hero_cta: "Ontdek Reizen",
+    grid_treks: "Bergbeklimmen", grid_safari: "Safari",
+    grid_activities: "Dagactiviteiten", grid_about: "Over Raga Voice",
+    treks_label: "Bergbeklimmen", treks_title: "Bedwing het Dak van Afrika",
+    safari_label: "Safari", safari_title: "Wees Getuige van de Wildernis",
+    activities_label: "Dagactiviteiten", activities_title: "Verken Voorbij de Top",
+    about_label: "Over Ons", about_title: "Ontmoet Raga Voice",
+    about_quote: "\"Uw avontuur wordt niet alleen begeleid — het krijgt een soundtrack.\"",
+    about_role: "Oprichter · Gids · Muzikant",
+    contact_title: "Klaar voor Uw Avontuur?",
+    contact_subtitle: "Wij creëren reizen die in uw ziel blijven.",
+    contact_email: "E-mail Ons", form_send: "Verstuur",
+    footer_location: "Arusha · Tanzania · © 2026",
+    form_name: "Uw Naam", form_email: "Uw E-mail",
+    form_message: "Vertel ons over uw droomavontuur...",
+    alert_email: "Uw e-mailclient openen..."
+  },
+  it: {
+    nav_treks: "Alpinismo", nav_safari: "Safari", nav_activities: "Escursioni",
+    nav_about: "Chi Siamo", nav_contact: "Contatti",
+    hero_subtitle: "IL TETTO DELL'AFRICA", hero_cta: "Esplora i Viaggi",
+    grid_treks: "Alpinismo", grid_safari: "Safari",
+    grid_activities: "Escursioni", grid_about: "Raga Voice",
+    treks_label: "Alpinismo", treks_title: "Conquista il Tetto dell'Africa",
+    safari_label: "Safari", safari_title: "Ammira la Natura Selvaggia",
+    activities_label: "Escursioni", activities_title: "Esplora Oltre la Vetta",
+    about_label: "Chi Siamo", about_title: "Incontra Raga Voice",
+    about_quote: "\"La tua avventura non è solo guidata — ha una colonna sonora.\"",
+    about_role: "Fondatore · Guida · Musicista",
+    contact_title: "Pronto per la Tua Avventura?",
+    contact_subtitle: "Creiamo viaggi che rimangono nella tua anima per sempre.",
+    contact_email: "Inviaci un'Email", form_send: "Invia",
+    footer_location: "Arusha · Tanzania · © 2026",
+    form_name: "Il Tuo Nome", form_email: "La Tua Email",
+    form_message: "Raccontaci la tua avventura da sogno...",
+    alert_email: "Apertura del client di posta..."
+  }
+};
+
+const langNames = { en: 'English', zh: '中文', fr: 'Français', nl: 'Nederlands', it: 'Italiano' };
+const langCodes = ['en', 'zh', 'fr', 'nl', 'it'];
+
+let currentLang = 'en';
+
+function toggleLang() {
+  const idx = langCodes.indexOf(currentLang);
+  currentLang = langCodes[(idx + 1) % langCodes.length];
+  const btn = document.getElementById('langToggle');
+  const nextIdx = (langCodes.indexOf(currentLang) + 1) % langCodes.length;
+  btn.textContent = langNames[langCodes[nextIdx]];
+  document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang === 'fr' ? 'fr' : currentLang === 'nl' ? 'nl' : currentLang === 'it' ? 'it' : 'en';
+  applyTranslations();
+}
+
+function applyTranslations() {
+  const texts = i18n[currentLang];
+  document.querySelectorAll('[data-key]').forEach(el => {
+    const key = el.dataset.key;
+    if (texts[key]) el.textContent = texts[key];
+  });
+  document.querySelectorAll('[data-key-placeholder]').forEach(el => {
+    const key = el.dataset.keyPlaceholder;
+    if (texts[key]) el.placeholder = texts[key];
+  });
+  renderTreks();
+  renderSafari();
+  renderActivities();
+}
+
+// ===== NAV SCROLL EFFECT =====
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 100);
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+document.querySelectorAll('#navLinks a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// ===== CONTENT DATA =====
+const treksData = [
+  { id: 'machame', title: { en: "Machame Route", zh: "马查姆路线", fr: "Route Machame", nl: "Machame Route", it: "Via Machame" }, subtitle: { en: "\"The Whisky Route\" — 6 Days", zh: "\"威士忌路线\" — 6天", fr: "\"La Route du Whisky\" — 6 Jours", nl: "\"De Whisky Route\" — 6 Dagen", it: "\"La Via del Whisky\" — 6 Giorni" }, price: "From $1,800", img: null },
+  { id: 'lemosho', title: { en: "Lemosho Route", zh: "莱莫绍路线", fr: "Route Lemosho", nl: "Lemosho Route", it: "Via Lemosho" }, subtitle: { en: "8 Days · 95% Summit Success", zh: "8天 · 95%登顶成功率", fr: "8 Jours · 95% de Réussite au Sommet", nl: "8 Dagen · 95% Top Succespercentage", it: "8 Giorni · 95% Successo in Vetta" }, price: "From $2,400", img: null },
+  { id: 'londorossi', title: { en: "Londorossi Route", zh: "隆多罗西路", fr: "Route Londorossi", nl: "Londorossi Route", it: "Via Londorossi" }, subtitle: { en: "10 Days · Ultimate Acclimatization", zh: "10天 · 最佳适应路线", fr: "10 Jours · Acclimatation Ultime", nl: "10 Dagen · Ultieme Acclimatisatie", it: "10 Giorni · Acclimatazione Perfetta" }, price: "From $2,800", img: null },
+  { id: 'marangu', title: { en: "Marangu Route", zh: "马兰古路线", fr: "Route Marangu", nl: "Marangu Route", it: "Via Marangu" }, subtitle: { en: "\"Coca-Cola Route\" — 6 Days", zh: "\"可口可乐路线\" — 6天", fr: "\"Route Coca-Cola\" — 6 Jours", nl: "\"Coca-Cola Route\" — 6 Dagen", it: "\"Via Coca-Cola\" — 6 Giorni" }, price: "From $1,600", img: null },
+  { id: 'rongai', title: { en: "Rongai Route", zh: "荣盖路线", fr: "Route Rongai", nl: "Rongai Route", it: "Via Rongai" }, subtitle: { en: "6 Days · Wild Northern Slopes", zh: "6天 · 原始北坡", fr: "6 Jours · Versants Nord Sauvages", nl: "6 Dagen · Wilde Noordelijke Helllingen", it: "6 Giorni · Selvaggi Pendii Settentrionali" }, price: "From $1,900", img: null },
+  { id: 'umbwe', title: { en: "Umbwe Route", zh: "翁布韦路线", fr: "Route Umbwe", nl: "Umbwe Route", it: "Via Umbwe" }, subtitle: { en: "The Ultimate Challenge", zh: "终极挑战", fr: "Le Défi Ultime", nl: "De Ultieme Uitdaging", it: "La Sfida Definitiva" }, price: "From $1,800", img: null },
+  { id: 'longido', title: { en: "Longido Cultural Hike", zh: "隆吉多文化之旅", fr: "Randonnée Culturelle Longido", nl: "Longido Culturele Trektocht", it: "Escursione Culturale Longido" }, subtitle: { en: "Maasai Culture & Mountain Hike", zh: "马赛文化与登山", fr: "Culture Maasaï & Randonnée", nl: "Maasai Cultuur & Bergwandeling", it: "Cultura Maasai & Escursione" }, price: "From $600", img: null },
+  { id: 'meru', title: { en: "Mount Meru", zh: "梅鲁山", fr: "Mont Méru", nl: "Mount Meru", it: "Monte Meru" }, subtitle: { en: "Tanzania's Wild Prelude to Kili", zh: "乞力马扎罗的狂野前奏", fr: "Le Prélude Sauvage du Kili", nl: "Tanzania's Wilde Prelude op de Kili", it: "Il Selvaggio Preludio del Kili" }, price: "From $1,200", img: null }
+];
+
+const safariData = [
+  { id: 'northern-circuit', title: { en: "Northern Circuit 4-Day Safari", zh: "北部环线4日野生动物园", fr: "Safari 4 Jours Circuit Nord", nl: "Northern Circuit 4-Daagse Safari", it: "Safari 4 Giorni Circuito Nord" }, subtitle: { en: "Tarangire · Serengeti · Ngorongoro", zh: "塔兰吉雷 · 塞伦盖蒂 · 恩戈罗恩戈罗", fr: "Tarangire · Serengeti · Ngorongoro", nl: "Tarangire · Serengeti · Ngorongoro", it: "Tarangire · Serengeti · Ngorongoro" }, price: "From $1,500", img: null },
+  { id: 'great-migration', title: { en: "Tracking the Great Migration", zh: "追踪大迁徙", fr: "Sur la Piste de la Grande Migration", nl: "De Grote Migratie Volgen", it: "Seguendo la Grande Migrazione" }, subtitle: { en: "5 Days · Nature's Greatest Show", zh: "5天 · 大自然最壮丽的演出", fr: "5 Jours · Le Plus Grand Spectacle de la Nature", nl: "5 Dagen · De Grootste Show van de Natuur", it: "5 Giorni · Il Più Grande Spettacolo della Natura" }, price: "From $2,200", img: null },
+  { id: 'lake-natron', title: { en: "Lake Natron & Oldonyo Lengai", zh: "纳特龙湖与伦盖火山", fr: "Lac Natron & Oldonyo Lengai", nl: "Lake Natron & Oldonyo Lengai", it: "Lago Natron & Oldonyo Lengai" }, subtitle: { en: "Flamingos & Active Volcano", zh: "火烈鸟与活火山", fr: "Flamants Roses & Volcan Actif", nl: "Flamingo's & Actieve Vulkaan", it: "Fenicotteri & Vulcano Attivo" }, price: "From $800", img: null },
+  { id: 'elephants-beaches', title: { en: "Elephants, Lions & White Beaches", zh: "大象、狮子与白沙滩", fr: "Éléphants, Lions & Plages Blanches", nl: "Olifanten, Leeuwen & Witte Stranden", it: "Elefanti, Leoni & Spiagge Bianche" }, subtitle: { en: "Bush to Beach Adventure", zh: "丛林到海滩的冒险", fr: "Aventure de la Brousse à la Plage", nl: "Avontuur van Bush naar Strand", it: "Avventura dalla Savana alla Spiaggia" }, price: "From $3,000", img: null },
+  { id: 'lake-eyasi', title: { en: "Lake Eyasi Day Trip", zh: "埃亚西湖一日游", fr: "Excursion au Lac Eyasi", nl: "Lake Eyasi Dagexcursie", it: "Escursione al Lago Eyasi" }, subtitle: { en: "Meet the Hadza Hunter-Gatherers", zh: "探访哈扎狩猎采集部落", fr: "Rencontrez les Chasseurs-Cueilleurs Hadza", nl: "Ontmoet de Hadza Jager-Verzamelaars", it: "Incontra i Cacciatori-Raccoglitori Hadza" }, price: "From $400", img: null },
+  { id: 'mkomazi', title: { en: "Mkomazi National Park", zh: "姆科马齐国家公园", fr: "Parc National de Mkomazi", nl: "Mkomazi Nationaal Park", it: "Parco Nazionale Mkomazi" }, subtitle: { en: "Tanzania's Hidden Wildlife Sanctuary", zh: "坦桑尼亚隐秘的野生动物保护区", fr: "Le Sanctuaire Caché de Tanzanie", nl: "Tanzania's Verborgen Wildreservaat", it: "Il Santuario Nascosto della Tanzania" }, price: "From $600", img: null },
+  { id: 'usambara', title: { en: "Eastern & Western Usambara", zh: "东西乌桑巴拉山", fr: "Usambara Est & Ouest", nl: "Oostelijke & Westelijke Usambara", it: "Usambara Orientale & Occidentale" }, subtitle: { en: "Rainforest Mountains & Culture", zh: "雨林山脉与文化之旅", fr: "Montagnes de Forêt Tropicale & Culture", nl: "Regenwoud Bergen & Cultuur", it: "Montagne della Foresta Pluviale & Cultura" }, price: "From $500", img: null },
+  { id: 'northern-circuit-great', title: { en: "Northern Circuit Great Migration", zh: "北部大迁徙之旅", fr: "Grande Migration Circuit Nord", nl: "Northern Circuit Great Migration", it: "Grande Migrazione Circuito Nord" }, subtitle: { en: "Big Cats, Maasai & Stunning Landscapes", zh: "大型猫科动物、马赛人与壮美风景", fr: "Grands Félins, Maasaï & Paysages Époustouflants", nl: "Grote Katten, Maasai & Adembenemende Landschappen", it: "Grandi Felini, Maasai & Paesaggi Mozzafiato" }, price: "From $1,800", img: null }
+];
+
+const activitiesData = [
+  { id: 'farm-coffee', title: { en: "Arusha Farm Walk & Coffee Tour", zh: "阿鲁沙农场与咖啡之旅", fr: "Visite de Ferme & Tour du Café à Arusha", nl: "Arusha Boerderijwandeling & Koffietour", it: "Passeggiata in Fattoria & Tour del Caffè" }, subtitle: { en: "Farm-to-Cup Coffee Experience", zh: "从农场到杯中的咖啡体验", fr: "Expérience Café de la Ferme à la Tasse", nl: "Koffie-ervaring van Boerderij tot Kopje", it: "Esperienza di Caffè dalla Fattoria alla Tazza" }, price: "From $80", img: null },
+  { id: 'maji-moto', title: { en: "Arusha, Ngorongoro & Maji Moto", zh: "阿鲁沙、恩戈罗恩戈罗与温泉", fr: "Arusha, Ngorongoro & Maji Moto", nl: "Arusha, Ngorongoro & Maji Moto", it: "Arusha, Ngorongoro & Maji Moto" }, subtitle: { en: "Geothermal Paradise & Hot Springs", zh: "地热天堂与温泉", fr: "Paradis Géothermal & Sources Chaudes", nl: "Geothermisch Paradijs & Warmwaterbronnen", it: "Paradiso Geotermico & Sorgenti Termali" }, price: "From $120", img: null },
+  { id: 'lake-duluti', title: { en: "Lake Duluti Day Trip", zh: "杜鲁提湖一日游", fr: "Excursion au Lac Duluti", nl: "Lake Duluti Dagexcursie", it: "Escursione al Lago Duluti" }, subtitle: { en: "Crater Lake Canoeing & Birdwatching", zh: "火山湖划独木舟与观鸟", fr: "Canoë sur un Lac de Cratère & Observation d'Oiseaux", nl: "Kanovaren op een Kratermeer & Vogels Spotten", it: "Canoa sul Lago del Cratere & Birdwatching" }, price: "From $70", img: null },
+  { id: 'napuru', title: { en: "Napuru Waterfalls", zh: "纳普鲁瀑布", fr: "Cascades de Napuru", nl: "Napuru Watervallen", it: "Cascate di Napuru" }, subtitle: { en: "78m Waterfall in Ancient Rainforest", zh: "原始雨林中78米高的瀑布", fr: "Cascade de 78m dans une Forêt Tropicale Ancienne", nl: "78m Waterval in een Oud Regenwoud", it: "Cascata di 78m nella Foresta Pluviale Antica" }, price: "From $60", img: null },
+  { id: 'raga-voice', title: { en: "Raga Voice Experience", zh: "Raga Voice 音乐体验", fr: "Expérience Raga Voice", nl: "Raga Voice Ervaring", it: "Esperienza Raga Voice" }, subtitle: { en: "Music Meets the Mountain", zh: "当音乐遇见高山", fr: "La Musique Rencontre la Montagne", nl: "Muziek Ontmoet de Berg", it: "La Musica Incontra la Montagna" }, price: "Custom", img: null }
+];
+
+const dayPhotos = [
+  'Photos/Day_Activities/5afc71d4bca843ca95a812782d7dc1bb.jpg',
+  'Photos/Day_Activities/691660a7250e4f9aae3a7f2fdd1466aa.jpg',
+  'Photos/Day_Activities/84bf4a21df9c45f3838cb71fe260b303.jpg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.22.jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.26 (1).jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.26.jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.32 (1).jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.07.32.jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.09.31.jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.10.05 (1).jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.10.08 (1).jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.10.11.jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2023-10-09 at 13.10.12 (1).jpeg',
+  'Photos/Day_Activities/WhatsApp Image 2025-03-29 at 13.07.00_ea209132.jpg',
+  'Photos/Day_Activities/WhatsApp Image 2025-03-29 at 13.07.01_9b496f69.jpg',
+  'Photos/Day_Activities/WhatsApp Image 2025-03-29 at 13.25.37_d33cfbdf (1).jpg',
+  'Photos/Day_Activities/WhatsApp Image 2025-03-29 at 13.25.46_03dbf482 (1).jpg'
+];
+const safariPhotos = [
+  'Photos/Safari/3b1f95f0fe774759a64192d2986ecc9a.jpg',
+  'Photos/Safari/3ea593f25a884756beddbfca61dc4a34.jpg',
+  'Photos/Safari/46f08f41b1f24caf96aaa8886172428e.jpg',
+  'Photos/Safari/57057f230bb44111b0773def9593d22b(1).jpg',
+  'Photos/Safari/5ccd311ba0d64ca4ae18d0248ecf7d73.jpg',
+  'Photos/Safari/691660a7250e4f9aae3a7f2fdd1466aa.jpg',
+  'Photos/Safari/8ac878db126441b5aa971028330a865e.jpg',
+  'Photos/Safari/8c2a871707fb47d588e3af47bace8bf7.jpg',
+  'Photos/Safari/91ca4d4a40c945e9915c08fbcb625cc8.jpg',
+  'Photos/Safari/9387050d132a450fa747ddcc7b8ebf9c.jpg',
+  'Photos/Safari/c56851b370574bf88fd13a2cb8defc27.jpg',
+  'Photos/Safari/e799dce6219c415fa2e5c1280636f2a5.jpg',
+  'Photos/Safari/e90b3ce63c17497c94fb2720094e07c9.jpg',
+  'Photos/Safari/IMG20230424164100.jpg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.07.25.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.07.30.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.07.31.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.07.32.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.09.31.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.09.35.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.09.42.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.09.47.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.09.58.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.10.07 (1).jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.10.07.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.10.08.jpeg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.10.09 (1).jpg',
+  'Photos/Safari/WhatsApp Image 2023-10-09 at 13.10.10.jpg'
+];
+// Shuffle-based photo assignment — guarantees no duplicates
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function assignPhotos() {
+  const shuffledDay = shuffle(dayPhotos);
+  const shuffledSafari = shuffle(safariPhotos);
+  let di = 0, si = 0;
+  treksData.forEach(t => { if (!t.img) { t.img = shuffledDay[di % shuffledDay.length]; di++; } });
+  safariData.forEach(s => { if (!s.img) { s.img = shuffledSafari[si % shuffledSafari.length]; si++; } });
+  activitiesData.forEach(a => { if (!a.img) { a.img = shuffledDay[di % shuffledDay.length]; di++; } });
+}
+assignPhotos();
+
+function getLangText(item, field) {
+  if (item[field] && item[field][currentLang]) return item[field][currentLang];
+  if (item[field] && item[field].en) return item[field].en;
+  return '';
+}
+function renderCards(containerId, data, section) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = data.map(item => {
+    const title = getLangText(item, 'title');
+    const subtitle = getLangText(item, 'subtitle');
+    const bgStyle = item.img
+      ? `background-image:url('${item.img}');background-size:cover;background-position:center;`
+      : 'background:linear-gradient(135deg, var(--brown), var(--gold));';
+    return `
+      <div class="card" onclick="openDetail('${section}', '${item.id}')">
+        <div class="card-img" style="${bgStyle}"></div>
+        <div class="card-body">
+          <h3 class="card-title">${title}</h3>
+          <p class="card-info">${subtitle}</p>
+          <p class="card-days">${item.price}</p>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function renderTreks() { renderCards('treksCards', treksData, 'treks'); }
+function renderSafari() { renderCards('safariCards', safariData, 'safari'); }
+function renderActivities() { renderCards('activitiesCards', activitiesData, 'activities'); }
+
+// ===== MODAL =====
+function openDetail(section, id) {
+  const modal = document.getElementById('modal');
+  const body = document.getElementById('modalBody');
+  let item;
+  if (section === 'treks') item = treksData.find(d => d.id === id);
+  if (section === 'safari') item = safariData.find(d => d.id === id);
+  if (section === 'activities') item = activitiesData.find(d => d.id === id);
+  if (!item) return;
+
+  const title = getLangText(item, 'title');
+  const subtitle = getLangText(item, 'subtitle');
+  const detail = detailContent[section] && detailContent[section][id];
+  let detailHtml;
+  const waLabels = { en: 'Inquire on WhatsApp', zh: '在WhatsApp上咨询', fr: 'Contactez-nous sur WhatsApp', nl: 'Informeer op WhatsApp', it: 'Chiedi su WhatsApp' };
+  const comingSoonLabels = { en: 'Full itinerary coming soon. Contact us for details.', zh: '详细行程即将发布，联系我们获取详情。', fr: 'Itinéraire complet à venir. Contactez-nous pour plus de détails.', nl: 'Volledige routebeschrijving binnenkort. Neem contact op voor details.', it: 'Itinerario completo in arrivo. Contattaci per i dettagli.' };
+  if (detail) {
+    detailHtml = (detail[currentLang] || detail.en || '');
+  } else {
+    const msg = comingSoonLabels[currentLang] || comingSoonLabels.en;
+    detailHtml = '<p style="color:var(--text-light);">' + msg + '</p>';
+  }
+  const waLabel = waLabels[currentLang] || waLabels.en;
+  body.innerHTML = `
+    <h2>${title}</h2>
+    <p style="color:var(--gold);font-size:13px;letter-spacing:1px;margin-bottom:24px;">${subtitle} · ${item.price}</p>
+    ${detailHtml}
+    <div style="margin-top:32px;">
+      <a href="https://wa.me/255XXXXXXXXX" class="btn-fill" target="_blank" rel="noopener">${waLabel}</a>
+    </div>`;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+// ===== CONTACT FORM =====
+function handleContact(e) {
+  e.preventDefault();
+  const form = e.target;
+  const name = form.name.value;
+  const email = form.email.value;
+  const message = form.message.value;
+  const mailto = `mailto:info@kilivibes.com?subject=Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
+  window.location.href = mailto;
+  form.reset();
+  const alertMsg = (i18n[currentLang] && i18n[currentLang].alert_email) || i18n.en.alert_email;
+  alert(alertMsg);
+}
+
+// ===== DETAIL CONTENT (populated in Task 3) =====
+const detailContent = {
+  treks: {
+    machame: {
+      en: `<h3>KILIMANJARO'S MACHAME ROUTE: 6 DAYS OF PURE ADRENALINE</h3>
+<p>Nicknamed the "Whisky Route" — a steep, heart-pounding ascent through rainforests, moorlands, and glacial valleys. Perfect for adventurers who want to conquer Africa's roof in record time.</p>
+<h4>DAY 0: ARRIVE LIKE A HERO</h4><p>Land at Kilimanjaro Airport, transfer to Springlands Hotel. Rest, feast, and steel your nerves.</p>
+<h4>DAY 1: RAINFOREST BOOTCAMP</h4><p>Machame Gate → Machame Camp | 1490m → 2980m | 6-7 hrs. Dense, mist-shrouded rainforest.</p>
+<h4>DAY 2: MOORLAND MARCH</h4><p>Machame Camp → Shira Camp | 2980m → 3840m | 4-5 hrs. Giant heather and lobelia, first glacier views.</p>
+<h4>DAY 3: LAVA TOWER ACCLIMATIZATION</h4><p>Shira → Lava Tower → Barranco | 3840m → 4630m → 3950m | 6-7 hrs. Climb high, sleep low.</p>
+<h4>DAY 4: BARRANCO WALL</h4><p>Barranco → Karanga | 3950m → 4035m | 4-5 hrs. The famous Barranco Wall scramble.</p>
+<h4>DAY 5: BARAFU BASE</h4><p>Karanga → Barafu Camp | 4035m → 4660m | 3-4 hrs. Summit eve preparation.</p>
+<h4>DAY 6: SUMMIT & DESCENT</h4><p>Barafu → Uhuru Peak 5895m → Mweka Camp 3100m | 12-16 hrs. Midnight start, sunrise at the summit.</p>`,
+      zh: `<h3>乞力马扎罗马查姆路线：6天纯肾上腺素之旅</h3>
+<p>绰号"威士忌路线"——穿过雨林、荒原和冰川山谷的陡峭攀登。适合想在最短时间内征服非洲之巅的冒险者。</p>
+<h4>第0天：英雄抵达</h4><p>抵达乞力马扎罗机场，送至Springlands酒店。</p>
+<h4>第1天：雨林特训</h4><p>马查姆大门→马查姆营地 | 1490m→2980m | 6-7小时。</p>
+<h4>第2天：荒原行军</h4><p>马查姆营地→希拉营地 | 2980m→3840m | 4-5小时。</p>
+<h4>第3天：熔岩塔适应</h4><p>希拉→熔岩塔→巴兰科 | 3840m→4630m→3950m | 6-7小时。爬高睡低。</p>
+<h4>第4天：巴兰科墙</h4><p>巴兰科→卡兰加 | 3950m→4035m | 4-5小时。著名的巴兰科墙攀爬。</p>
+<h4>第5天：巴拉夫基地</h4><p>卡兰加→巴拉夫营地 | 4035m→4660m | 3-4小时。登顶前夜。</p>
+<h4>第6天：登顶与下山</h4><p>巴拉夫→乌呼鲁峰5895m→姆韦卡营地 | 12-16小时。午夜出发，日出登顶。</p>`
+    },
+    lemosho: {
+      en: `<h3>KILIMANJARO'S LEMOSHO ROUTE: 8 DAYS OF UNTAMED WILDERNESS</h3>
+<p>Pristine rainforests, vast plateaus, and glacial valleys — maximizing acclimatization for 95% summit success. Fewer crowds, raw beauty, and hiking with an armed ranger.</p>
+<h4>DAY 0: YOUR AFRICAN ADVENTURE BEGINS</h4><p>Touch down at Kilimanjaro Airport, Springlands Hotel awaits.</p>
+<h4>DAY 1: INTO THE ENCHANTED FOREST</h4><p>Londorossi Gate → Mti Mkubwa | 2250m → 2750m | 2-3 hrs. Primordial rainforest.</p>
+<h4>DAY 2: ASCEND INTO THE HEATHLANDS</h4><p>Mti Mkubwa → Shira 1 | 2750m → 3500m | 4-5 hrs. Giant heathers, sweeping moorlands.</p>
+<h4>DAY 3: ACROSS THE SHIRA PLATEAU</h4><p>Shira 1 → Shira 2 | 3500m → 3850m | 1-2 hrs. Gentle acclimatization day.</p>
+<h4>DAY 4: TO THE EDGE OF THE SKY</h4><p>Shira 2 → Lava Tower → Barranco | 3850m → 4600m → 3900m | 5-7 hrs. Iconic Lava Tower.</p>
+<h4>DAY 5: BARRANCO WALL</h4><p>Barranco → Karanga | 3900m → 4035m | 3-4 hrs. Hands-on rock scramble.</p>
+<h4>DAY 6: KARANGA TO BARAFU</h4><p>Karanga → Barafu | 4035m → 4660m | 3-4 hrs. Summit eve.</p>
+<h4>DAY 7: SUMMIT DAY</h4><p>Barafu → Uhuru Peak → Mweka | 4660m → 5895m → 3100m | 12-16 hrs. Roof of Africa!</p>
+<h4>DAY 8: MWEKA TO GATE</h4><p>Mweka Camp → Mweka Gate | 3100m → 1640m | 3-4 hrs. Victory descent.</p>`,
+      zh: `<h3>乞力马扎罗莱莫绍路线：8天原始荒野之旅</h3>
+<p>原始雨林、广阔高原和冰川山谷——最佳适应路线，95%登顶成功率。更少人群，原始之美。</p>
+<h4>第0天：冒险开始</h4><p>抵达乞力马扎罗机场，入住Springlands酒店。</p>
+<h4>第1天：迷幻森林</h4><p>隆多罗西大门→姆蒂姆库布瓦 | 2250m→2750m | 2-3小时。</p>
+<h4>第2天：登上荒原</h4><p>姆蒂姆库布瓦→希拉1号 | 2750m→3500m | 4-5小时。</p>
+<h4>第3天：穿越希拉高原</h4><p>希拉1号→希拉2号 | 3500m→3850m | 1-2小时。</p>
+<h4>第4天：天空边缘</h4><p>希拉2号→熔岩塔→巴兰科 | 3850m→4600m→3900m | 5-7小时。</p>
+<h4>第5天：巴兰科墙</h4><p>巴兰科→卡兰加 | 3900m→4035m | 3-4小时。</p>
+<h4>第6天：卡兰加到巴拉夫</h4><p>卡兰加→巴拉夫 | 4035m→4660m | 3-4小时。</p>
+<h4>第7天：登顶日</h4><p>巴拉夫→乌呼鲁峰→姆韦卡 | 5895m | 12-16小时。非洲之巅！</p>
+<h4>第8天：胜利下山</h4><p>姆韦卡营地→姆韦卡大门 | 3100m→1640m | 3-4小时。</p>`
+    },
+    marangu: {
+      en: `<h3>KILIMANJARO'S MARANGU ROUTE: THE CLASSIC "COCA-COLA ROUTE"</h3>
+<p>The perfect blend of comfort and adventure — Kilimanjaro's most iconic path. Cozy mountain huts, gradual ascents, and unbeatable views.</p>
+<h4>DAY 1: INTO THE JUNGLE</h4><p>Marangu Gate → Mandara Hut | 1843m → 2700m | 4-5 hrs. Emerald rainforest, colobus monkeys.</p>
+<h4>DAY 2: HEATHLANDS & HOROMBO</h4><p>Mandara → Horombo Hut | 2700m → 3720m | 6-8 hrs. Giant lobelias, Kibo views.</p>
+<h4>DAY 3: ACCLIMATIZE LIKE A PRO</h4><p>Horombo → Mawenzi Ridge → Horombo | 3720m → 4390m | 3-5 hrs. Altitude sharpening.</p>
+<h4>DAY 4: CROSSING THE LUNAR SADDLE</h4><p>Horombo → Kibo Hut | 3720m → 4700m | 6-8 hrs. Otherworldly saddle crossing.</p>
+<h4>DAY 5: SUMMIT DAY</h4><p>Kibo → Uhuru Peak → Horombo | 4700m → 5895m → 3720m | 12-16 hrs. Midnight start.</p>
+<h4>DAY 6: VICTORY DESCENT</h4><p>Horombo → Marangu Gate | 3720m → 1843m | 5-7 hrs. Receive your summit certificate!</p>`,
+      zh: `<h3>乞力马扎罗马兰古路线：经典"可口可乐路线"</h3>
+<p>舒适与冒险的完美结合——乞力马扎罗最具标志性的路线。舒适小屋、渐进式攀登、绝美风景。</p>
+<h4>第1天：进入丛林</h4><p>马兰古大门→曼达拉小屋 | 1843m→2700m | 4-5小时。</p>
+<h4>第2天：荒原与霍伦博</h4><p>曼达拉→霍伦博小屋 | 2700m→3720m | 6-8小时。</p>
+<h4>第3天：专业适应</h4><p>霍伦博→马文济山脊→霍伦博 | 3720m→4390m | 3-5小时。</p>
+<h4>第4天：穿越月球鞍部</h4><p>霍伦博→基博小屋 | 3720m→4700m | 6-8小时。</p>
+<h4>第5天：登顶日</h4><p>基博→乌呼鲁峰→霍伦博 | 5895m | 12-16小时。午夜出发。</p>
+<h4>第6天：胜利下山</h4><p>霍伦博→马兰古大门 | 3720m→1843m | 5-7小时。领取登顶证书！</p>`
+    },
+    rongai: {
+      en: `<h3>KILIMANJARO'S RONGAI ROUTE: 6 DAYS OF UNTOUCHED WILDERNESS</h3>
+<p>The hidden gem of Kilimanjaro — wild northern slopes, 90%+ summit success, gentle ascents, vistas stretching into Kenya.</p>
+<h4>DAY 0: AFRICA AWAITS</h4><p>Land at Kilimanjaro Airport, transfer to Springlands Hotel.</p>
+<h4>DAY 1: INTO THE HEART OF LOCAL LIFE</h4><p>Rongai Gate → Rongai Cave 1 | 2150m → 2600m | 2-3 hrs. Maasai villages, rainforest.</p>
+<h4>DAY 2: ASCEND TO THE CLOUDS</h4><p>Cave 1 → Cave 2 | 2600m → 3450m | 6-7 hrs. Kibo's crown first revealed.</p>
+<h4>DAY 3: MAWENZI'S MAGIC</h4><p>Cave 2 → Mawenzi Tarn | 3450m → 4330m | 3-4 hrs. Glacial lake, alpine energy.</p>
+<h4>DAY 4: CROSSING THE LUNAR SADDLE</h4><p>Mawenzi Tarn → School Camp | 4330m → 4750m | 4-5 hrs.</p>
+<h4>DAY 5: SUMMIT DAY</h4><p>School Camp → Uhuru Peak → Horombo | 4750m → 5895m → 3720m | 12-16 hrs.</p>
+<h4>DAY 6: VICTORY DESCENT</h4><p>Horombo → Marangu Gate | 5-7 hrs. Certificate ceremony!</p>`,
+      zh: `<h3>乞力马扎罗荣盖路线：6天原始荒野之旅</h3>
+<p>乞力马扎罗的隐藏宝石——原始北坡，90%+登顶成功率，景色延伸至肯尼亚。</p>
+<h4>第0天：非洲在等待</h4><p>抵达乞力马扎罗机场。</p>
+<h4>第1天：当地生活</h4><p>荣盖大门→荣盖1号洞 | 2150m→2600m | 2-3小时。</p>
+<h4>第2天：登上云端</h4><p>1号洞→2号洞 | 2600m→3450m | 6-7小时。</p>
+<h4>第3天：马文济的魅力</h4><p>2号洞→马文济塔恩 | 3450m→4330m | 3-4小时。</p>
+<h4>第4天：穿越月球鞍部</h4><p>马文济塔恩→学校营地 | 4330m→4750m | 4-5小时。</p>
+<h4>第5天：登顶日</h4><p>学校营地→乌呼鲁峰→霍伦博 | 5895m | 12-16小时。</p>
+<h4>第6天：胜利下山</h4><p>霍伦博→马兰古大门 | 5-7小时。领取证书！</p>`
+    },
+    londorossi: {
+      en: `<h3>KILIMANJARO'S LONDOROSSI ROUTE: 10 DAYS OF RAW WILDERNESS</h3>
+<p>A grand traverse of Kilimanjaro's wildest faces. Combines Lemosho's rainforests, Rongai's northern solitude, and a summit push from the east. 10 days for virtually guaranteed summit success.</p>
+<h4>DAY 0: AFRICA CALLS</h4><p>Land at Kilimanjaro Airport, transfer to Springlands Hotel.</p>
+<h4>DAY 1: STEP INTO THE PRIMEVAL</h4><p>Lemosho Glades → Mti Mkubwa | 2000m → 2750m | 3 hrs. Untamed rainforest.</p>
+<h4>DAY 2: RISE TO THE SHIRA PLATEAU</h4><p>Mti Mkubwa → Shira 1 | 2750m → 3500m | 4-5 hrs.</p>
+<h4>DAY 3: INTO THE VOID</h4><p>Shira 1 → Moir Camp | 3500m → 4205m | 4-5 hrs. Desolate plateau.</p>
+<h4>DAY 4: EDGE OF THE WORLD</h4><p>Moir → Buffalo/Pofu Camp | 4205m → 4025m | 5-7 hrs. Alpine desert.</p>
+<h4>DAY 5-6: NORTHERN TRAVERSE</h4><p>Buffalo → Third Cave → School Camp | Crossing Kilimanjaro's remote north face.</p>
+<h4>DAY 7-8: SUMMIT APPROACH</h4><p>School Camp → Outward Bound → Uhuru Peak | Final acclimatization and summit push.</p>
+<h4>DAY 9-10: DESCENT</h4><p>Summit → Mweka Camp → Mweka Gate | Victory descent through all climate zones.</p>`,
+      zh: `<h3>乞力马扎罗隆多罗西路：10天原始荒野之旅</h3>
+<p>穿越乞力马扎罗最狂野的面孔。结合莱莫绍的雨林、荣盖的北部荒野和东部登顶路线。10天保证登顶成功。</p>
+<h4>第0天：非洲在呼唤</h4><p>抵达乞力马扎罗机场。</p>
+<h4>第1天：步入原始</h4><p>莱莫绍林间空地→姆蒂姆库布瓦 | 2000m→2750m | 3小时。</p>
+<h4>第2天：登上希拉高原</h4><p>姆蒂姆库布瓦→希拉1号 | 2750m→3500m | 4-5小时。</p>
+<h4>第3天：虚空之中</h4><p>希拉1号→莫伊尔营地 | 3500m→4205m | 4-5小时。</p>
+<h4>第4天：世界边缘</h4><p>莫伊尔→布法罗营地 | 4205m→4025m | 5-7小时。高山荒漠。</p>
+<h4>第5-6天：北部穿越</h4><p>布法罗→第三洞→学校营地 | 穿越遥远的北壁。</p>
+<h4>第7-8天：登顶之路</h4><p>学校营地→乌呼鲁峰 | 最后的适应与登顶冲刺。</p>
+<h4>第9-10天：下山</h4><p>顶峰→姆韦卡营地→姆韦卡大门 | 穿越所有气候带的胜利下山。</p>`
+    },
+    meru: {
+      en: `<h3>CONQUER MOUNT MERU: TANZANIA'S WILD PRELUDE TO KILIMANJARO</h3>
+<p>Towering over Arusha National Park — trek through savannas with zebras and buffalo, scale volcanic ridges, stand atop a crater rim at sunrise.</p>
+<h4>DAY 1: INTO THE WILD</h4><p>Momella Gate → Miriakamba Huts | 1597m → 2503m | 3.5 hrs. Giraffes, colobus monkeys.</p>
+<h4>DAY 2: RISE TO THE CLOUDS</h4><p>Miriakamba → Saddle Huts | 2503m → 3560m | 2.5 hrs. Conquer Little Meru Peak (3820m).</p>
+<h4>DAY 3: SUMMIT DAY – FIRE IN THE SKY</h4><p>Saddle Huts → Summit → Saddle Huts | 3560m → 4566m | 6-8 hrs. Midnight start, sunrise over Kilimanjaro.</p>`,
+      zh: `<h3>征服梅鲁山：坦桑尼亚的狂野前奏</h3>
+<p>高耸于阿鲁沙国家公园之上——穿越有斑马和水牛的稀树草原，攀登火山脊，站在日出中的火山口边缘。</p>
+<h4>第1天：进入荒野</h4><p>莫梅拉大门→米里亚坎巴小屋 | 1597m→2503m | 3.5小时。</p>
+<h4>第2天：登上云端</h4><p>米里亚坎巴→鞍部小屋 | 2503m→3560m | 2.5小时。征服小梅鲁峰3820m。</p>
+<h4>第3天：登顶日</h4><p>鞍部小屋→顶峰→鞍部小屋 | 4566m | 6-8小时。午夜出发，乞力马扎罗日出。</p>`
+    },
+    longido: {
+      en: `<h3>MOUNT LONGIDO: WHERE CULTURE MEETS THE CLOUDS</h3>
+<p>A hidden gem where Maasai traditions and untamed wilderness collide.</p>
+<h4>DAY 1: MAASAI MAGIC & WILDERNESS WHISPERS</h4><p>Arusha → Kiserian Maasai Village. Forest safari with armed ranger, campfire tales, Maasai dances, luxury tent camping.</p>
+<h4>DAY 2: CONQUER MOUNT LONGIDO</h4><p>Kiserian → Summit → Arusha | 2629m. 1300m vertical climb, 360° views of Kenya, Kilimanjaro, and Maasai Steppe.</p>`,
+      zh: `<h3>隆吉多山：当文化遇见云端</h3>
+<p>马赛传统与原始荒野碰撞的隐藏宝石。</p>
+<h4>第1天：马赛魔法与荒野低语</h4><p>阿鲁沙→基塞里安马赛村。森林徒步、篝火故事、马赛舞蹈、豪华帐篷。</p>
+<h4>第2天：征服隆吉多山</h4><p>基塞里安→顶峰→阿鲁沙 | 2629m。1300m垂直攀登，360°俯瞰肯尼亚、乞力马扎罗和马赛草原。</p>`
+    },
+    umbwe: {
+      en: `<h3>KILIMANJARO'S UMBWE ROUTE: THE ULTIMATE CHALLENGE</h3>
+<p>The steepest, most direct route to the summit. For experienced climbers seeking the toughest test on Kilimanjaro. Steep ridges, dense rainforest, and the most dramatic approach to the Western Breach.</p>
+<p>This route demands excellent fitness and prior high-altitude experience. The reward: solitude, raw wilderness, and bragging rights few can claim.</p>`,
+      zh: `<h3>乞力马扎罗翁布韦路线：终极挑战</h3>
+<p>最陡峭、最直接的登顶路线。适合寻求乞力马扎罗最艰难考验的经验登山者。陡峭山脊、密林和最壮观的西部缺口路线。</p>
+<p>这条路线要求极好的体能和先前的高海拔经验。奖励：独处的宁静、原始荒野和极少人能达到的成就。</p>`
+    }
+  },
+  safari: {
+    'northern-circuit': {
+      en: `<h3>4-DAY TANZANIA SAFARI: ICONS OF THE WILD</h3>
+<p>Where elephants roam, lions climb, and the Great Migration thunders — experience Africa's crown jewels in one unforgettable journey.</p>
+<h4>DAY 1: TARANGIRE – KINGDOM OF GIANTS</h4><p>Arusha → Tarangire | 130km | 2 hrs. Vast elephant herds, ancient baobabs, river wildlife.</p>
+<h4>DAY 2: SERENGETI – ENDLESS PLAINS</h4><p>Tarangire → Serengeti | 250km | 4 hrs. Big Five, Great Migration, golden sunsets.</p>
+<h4>DAY 3: NGORONGORO – THE GARDEN OF EDEN</h4><p>Serengeti → Ngorongoro Crater | 145km | 2.5 hrs. 25,000 animals in a 260km² volcanic caldera. Black rhinos, flamingos.</p>
+<h4>DAY 4: RETURN TO ARUSHA</h4><p>Ngorongoro → Arusha | 190km | 3 hrs. Through the Great Rift Valley.</p>`,
+      zh: `<h3>4天坦桑尼亚野生动物园：荒野的标志</h3>
+<p>大象漫步、狮子攀树、大迁徙雷霆万钧——一次难忘的旅程。</p>
+<h4>第1天：塔兰吉雷——巨人之国</h4><p>阿鲁沙→塔兰吉雷 | 130公里 | 2小时。庞大的象群、古老的猴面包树。</p>
+<h4>第2天：塞伦盖蒂——无尽平原</h4><p>塔兰吉雷→塞伦盖蒂 | 250公里 | 4小时。五大兽、大迁徙、金色日落。</p>
+<h4>第3天：恩戈罗恩戈罗——伊甸园</h4><p>塞伦盖蒂→恩戈罗恩戈罗火山口 | 145公里 | 2.5小时。260平方公里内有25000只动物。</p>
+<h4>第4天：返回阿鲁沙</h4><p>恩戈罗恩戈罗→阿鲁沙 | 190公里 | 3小时。穿越东非大裂谷。</p>`
+    },
+    'great-migration': {
+      en: `<h3>CHASE THE GREAT MIGRATION: 5 DAYS OF WILD WONDER</h3>
+<p>Where 2.5 million hooves thunder — a front-row seat to nature's greatest show.</p>
+<h4>DAY 1: LAKE NATRON – AFRICA'S SECRET EDEN</h4><p>Arusha → Lake Natron | 137km. 2.5 million flamingos, Oldonyo Lengai volcano, hot spring dips.</p>
+<h4>DAY 2: NORTHERN SERENGETI – RIVER OF COURAGE</h4><p>Lake Natron → Klein's Gate | 104km. Mara River crossings, exclusive migration corridors.</p>
+<h4>DAY 3: LOBO VALLEY – LAND OF GIANTS</h4><p>Northern → Central Serengeti. Elephants on granite kopjes, big cats, migration tracking.</p>
+<h4>DAY 4: SERONERA – PREDATOR'S PLAYGROUND</h4><p>Central Serengeti. Lion prides, cheetah chases, hippo pools.</p>
+<h4>DAY 5: NGORONGORO & RETURN</h4><p>Ngorongoro Crater → Arusha. Final game drive in the world's largest intact caldera.</p>`,
+      zh: `<h3>追踪大迁徙：5天狂野奇迹之旅</h3>
+<p>250万只蹄声如雷——大自然最壮丽演出的前排座位。</p>
+<h4>第1天：纳特龙湖——非洲的秘密伊甸园</h4><p>阿鲁沙→纳特龙湖 | 137公里。250万只火烈鸟，伦盖火山，温泉。</p>
+<h4>第2天：北塞伦盖蒂——勇气之河</h4><p>纳特龙湖→克莱因大门 | 104公里。马拉河渡河，独家迁徙走廊。</p>
+<h4>第3天：洛博山谷——巨人之地</h4><p>北→中塞伦盖蒂。大象在花岗岩上，大型猫科动物。</p>
+<h4>第4天：塞罗内拉——捕食者的游乐场</h4><p>中塞伦盖蒂。狮群、猎豹追逐、河马池。</p>
+<h4>第5天：恩戈罗恩戈罗与返程</h4><p>恩戈罗恩戈罗火山口→阿鲁沙。世界上最大完整火山口的最后巡游。</p>`
+    },
+    'lake-natron': {
+      en: `<h3>LAKE NATRON & OLDOINYO LENGAI: 3 DAYS OF VOLCANIC FIRE & FLAMINGO MAGIC</h3>
+<p>Where Earth's raw power meets ethereal beauty — Tanzania's most otherworldly escape.</p>
+<h4>DAY 1: JOURNEY TO THE PINK EDEN</h4><p>Arusha → Lake Natron | 137km. 2.5 million flamingos, hot spring oasis, Rift Valley wonders.</p>
+<h4>DAY 2: CLIMB THE MOUNTAIN OF GOD</h4><p>Oldoinyo Lengai Summit | 3188m. The world's only active carbonatite volcano. Midnight start, sunrise summit.</p>
+<h4>DAY 3: MAASAI WISDOM & RETURN</h4><p>Engaresero Village → Arusha. Ethno-botanic tour, Maasai healing traditions, waterfall dip.</p>`,
+      zh: `<h3>纳特龙湖与伦盖火山：3天火山烈焰与火烈鸟魔法之旅</h3>
+<p>地球原始力量与空灵之美的交汇——坦桑尼亚最超脱尘世的避世之地。</p>
+<h4>第1天：前往粉色伊甸园</h4><p>阿鲁沙→纳特龙湖 | 137公里。250万只火烈鸟，温泉绿洲，裂谷奇观。</p>
+<h4>第2天：攀登上帝之山</h4><p>伦盖火山顶峰 | 3188m。世界唯一活跃的碳酸盐火山。午夜出发，日出登顶。</p>
+<h4>第3天：马赛智慧与返程</h4><p>恩加雷塞罗村→阿鲁沙。民族植物之旅，马赛疗愈传统，瀑布戏水。</p>`
+    }
+  },
+  activities: {
+    'farm-coffee': {
+      en: `<h3>ARUSHA FARM WALK & COFFEE TOUR: WHERE EVERY BEAN TELLS A STORY</h3>
+<p>Step into the boots of a Tanzanian farmer and savor the soul of Arusha, one cup at a time.</p>
+<h4>HIGHLIGHTS</h4>
+<ul><li>Farm-to-Cup Coffee Journey: Roast, grind, and brew your own coffee</li><li>Honey Heaven: Taste golden sweetness straight from the hive</li><li>Horticultural Magic: Wander flower-draped plots where bananas, maize, and coffee thrive</li><li>Sip Your Labor: Drink coffee so fresh, it still whispers stories of the soil</li></ul>`,
+      zh: `<h3>阿鲁沙农场与咖啡之旅：每一颗豆子都讲述着一个故事</h3>
+<p>穿上坦桑尼亚农民的靴子，品味阿鲁沙的灵魂，一杯一杯来。</p>
+<h4>亮点</h4>
+<ul><li>从农场到杯中：自己烘焙、研磨、冲泡咖啡</li><li>蜂蜜天堂：直接从蜂巢品尝金色甜蜜</li><li>园艺魔法：漫步鲜花点缀的田地</li><li>品尝劳动成果：喝下还在讲述土壤故事的咖啡</li></ul>`
+    },
+    'maji-moto': {
+      en: `<h3>MAJI MOTO DAY TRIP: TANZANIA'S SECRET GEOTHERMAL PARADISE</h3>
+<p>Where crystal waters heal, tropical palms sway, and the savannah whispers serenity.</p>
+<h4>HIGHLIGHTS</h4>
+<ul><li>Bounty-Scene Beauty: Turquoise pools fringed by jungle vines</li><li>Geothermal Magic: Soak in warm springs heated by volcanic earth</li><li>Fish Spa Therapy: Garra Rufa doctor fish exfoliation</li><li>Rope Swing Fun: Challenge friends to cannonball contests</li></ul>`,
+      zh: `<h3>温泉一日游：坦桑尼亚的秘密地热天堂</h3>
+<p>清澈的水疗愈身心，热带棕榈摇曳，稀树草原低语宁静。</p>
+<h4>亮点</h4>
+<ul><li>绝美风景：丛林藤蔓环绕的碧绿池塘</li><li>地热魔法：浸泡在火山地热加热的温泉中</li><li>鱼疗SPA：医生鱼去角质</li><li>绳索秋千：挑战朋友的跳水比赛</li></ul>`
+    },
+    'lake-duluti': {
+      en: `<h3>LAKE DULUTI DAY TRIP: ARUSHA'S TRANQUIL CRATER ESCAPE</h3>
+<p>Where history whispers, birds serenade, and still waters reflect the soul of Tanzania.</p>
+<h4>HIGHLIGHTS</h4>
+<ul><li>Canoe Through Time: Glide across a mirror-like crater lake</li><li>Birdwatcher's Paradise: 140+ species, giant kingfishers to fish eagles</li><li>Forest Secrets: Shaded trails, vervet monkeys, elusive chameleons</li><li>History Unearthed: Polish WWII cemeteries nestled in the jungle</li></ul>`,
+      zh: `<h3>杜鲁提湖一日游：阿鲁沙的宁静火山口之旅</h3>
+<p>历史低语，鸟儿歌唱，静水映照坦桑尼亚的灵魂。</p>
+<h4>亮点</h4>
+<ul><li>穿越时光的独木舟：在镜面般的火山湖上滑行</li><li>观鸟者天堂：140+种鸟类</li><li>森林秘密：林荫小径、绿猴、变色龙</li><li>历史发现：丛林中的波兰二战公墓</li></ul>`
+    },
+    napuru: {
+      en: `<h3>NAPARU WATERFALLS: MOUNT MERU'S HIDDEN GEM</h3>
+<p>Where crystal-clear waters plunge 78 meters into emerald pools, and adventure whispers through ancient rainforests.</p>
+<h4>HIGHLIGHTS</h4>
+<ul><li>Thrilling Trails: 1.5-hour hike or 5-6 hour rainforest trek</li><li>Waterfall Magic: 78-meter cascade, natural swimming pools</li><li>Wildlife Encounters: Blue monkeys, colobus troops, vervet monkeys</li><li>Panoramic Rewards: Viewpoints over Arusha city and Mount Meru</li></ul>`,
+      zh: `<h3>纳普鲁瀑布：梅鲁山的隐藏宝石</h3>
+<p>清澈的水从78米高处倾泻入翡翠池中，冒险在古老雨林中低语。</p>
+<h4>亮点</h4>
+<ul><li>刺激小径：1.5小时徒步或5-6小时雨林穿越</li><li>瀑布魔法：78米高的瀑布，天然泳池</li><li>野生动物邂逅：蓝猴、疣猴、绿猴</li><li>全景奖励：俯瞰阿鲁沙市和梅鲁山的观景点</li></ul>`
+    },
+    'raga-voice': {
+      en: `<h3>KAUZEN "RAGA VOICE" GEOFREY: WHERE MUSIC MEETS THE MOUNTAIN</h3>
+<p>Your adventure isn't just guided — it's soundtracked. Raga Voice weaves soulful melodies into every expedition, blending authentic Tanzanian rhythms with your favorite global tunes.</p>
+<h4>EXPERIENCE HIGHLIGHTS</h4>
+<ul><li>Live Soundtracks: Summiting Kilimanjaro to the strum of a guitar</li><li>Authentic Tanzanian Vibes: Traditional songs of Maasai warriors and mountain legends</li><li>Your Requests, His Strings: Coldplay covers to Swahili folk ballads</li><li>Sundowner Serenades: Acoustic sets with Serengeti sunsets as backdrop</li><li>Campfire Jam Sessions: Impromptu collaborations with Maasai warriors</li></ul>`,
+      zh: `<h3>Kauzen "Raga Voice" Geofrey：当音乐遇见高山</h3>
+<p>你的冒险不只是被引导——它会被谱写成曲。Raga Voice将深情旋律编织进每一次探险，融合纯正的坦桑尼亚节奏与你喜爱的全球曲调。</p>
+<h4>体验亮点</h4>
+<ul><li>现场配乐：在吉他声中登顶乞力马扎罗</li><li>纯正坦桑尼亚风情：马赛勇士和山岳传说的传统歌谣</li><li>你的点歌，他的琴弦：从酷玩乐队到斯瓦希里民谣</li><li>日落小夜曲：以塞伦盖蒂日落为背景的原声演出</li><li>篝火即兴演奏：与马赛勇士的即兴合作</li></ul>`
+    }
+  }
+};
+
+// ===== INIT =====
+renderTreks();
+renderSafari();
+renderActivities();
+</script>
+</body>
+</html>
