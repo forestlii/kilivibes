@@ -737,11 +737,26 @@ function openDetail(section, id) {
     </div>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
+  gsap.fromTo('.modal-content',
+    { scale: 0.9, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.35, ease: 'back.out(1.4)' }
+  );
+  gsap.fromTo('.modal',
+    { opacity: 0 },
+    { opacity: 1, duration: 0.25, ease: 'power2.out' }
+  );
 }
 
 function closeModal() {
-  document.getElementById('modal').classList.remove('open');
-  document.body.style.overflow = '';
+  gsap.to('.modal-content', {
+    scale: 0.9, opacity: 0, duration: 0.2, ease: 'power2.in',
+    onComplete: () => {
+      document.getElementById('modal').classList.remove('open');
+      document.body.style.overflow = '';
+      gsap.set('.modal-content', { clearProps: 'all' });
+      gsap.set('.modal', { clearProps: 'all' });
+    }
+  });
 }
 
 document.getElementById('modal').addEventListener('click', function(e) {
@@ -901,6 +916,108 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // --- Gallery ---
+  gsap.from('.gallery-item', {
+    scrollTrigger: {
+      trigger: '.gallery',
+      start: 'top 85%',
+      once: true
+    },
+    scale: 0.9,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: 'power2.out'
+  });
+
+  gsap.to('.gallery-item', {
+    scrollTrigger: {
+      trigger: '.gallery',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    },
+    y: -40,
+    ease: 'none'
+  });
+
+  // --- About Section ---
+  gsap.from('.about-quote', {
+    scrollTrigger: {
+      trigger: '.about',
+      start: 'top 85%',
+      once: true
+    },
+    clipPath: 'inset(0 100% 0 0)',
+    duration: 1.2,
+    ease: 'power3.inOut'
+  });
+
+  gsap.from('.about-name, .about-role', {
+    scrollTrigger: {
+      trigger: '.about-name',
+      start: 'top 90%',
+      once: true
+    },
+    y: 20,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.1,
+    ease: 'power2.out'
+  });
+
+  gsap.from('.video-wrap', {
+    scrollTrigger: {
+      trigger: '.video-wrap',
+      start: 'top 88%',
+      once: true
+    },
+    scale: 0.85,
+    opacity: 0,
+    duration: 0.7,
+    ease: 'power3.out'
+  });
+
+  // --- CTA Buttons ---
+  gsap.from('.cta-buttons .btn-outline, .cta-buttons .btn-fill', {
+    scrollTrigger: {
+      trigger: '.cta-buttons',
+      start: 'top 88%',
+      once: true
+    },
+    scale: 0,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.15,
+    ease: 'back.out(1.7)'
+  });
+
+  // --- Contact Form Inputs ---
+  gsap.from('.contact-form input, .contact-form textarea, .contact-form button', {
+    scrollTrigger: {
+      trigger: '.contact-form',
+      start: 'top 88%',
+      once: true
+    },
+    x: -20,
+    opacity: 0,
+    duration: 0.4,
+    stagger: 0.08,
+    ease: 'power2.out'
+  });
+
+  // --- Footer ---
+  gsap.from('.footer', {
+    scrollTrigger: {
+      trigger: '.footer',
+      start: 'top 95%',
+      once: true
+    },
+    opacity: 0,
+    duration: 0.6,
+    ease: 'power2.out'
+  });
 });
 
 // ===== DETAIL CONTENT (populated in Task 3) =====
