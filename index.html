@@ -147,7 +147,7 @@ body {
   background: var(--white); border-radius: 2px; overflow: hidden;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06); transition: transform 0.3s, box-shadow 0.3s;
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+.card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
 .card-img { height: 220px; background-size: cover; background-position: center; }
 .card-body { padding: 24px; }
 .card-title { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
@@ -862,6 +862,45 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: 'power2.out'
     });
   });
+
+  // --- Card Stagger Reveal ---
+  ['#treksCards', '#safariCards', '#activitiesCards'].forEach(sel => {
+    const container = document.querySelector(sel);
+    if (!container) return;
+    gsap.from(container.querySelectorAll('.card'), {
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 85%',
+        once: true
+      },
+      y: 30,
+      opacity: 0,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: 'power3.out'
+    });
+  });
+
+  // --- Card Hover Tilt (desktop only) ---
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(card => {
+      const qX = gsap.quickTo(card, 'x', { duration: 0.3, ease: 'power2.out' });
+      const qY = gsap.quickTo(card, 'y', { duration: 0.3, ease: 'power2.out' });
+
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) / rect.width * 10;
+        const y = (e.clientY - rect.top - rect.height / 2) / rect.height * 10;
+        qX(x);
+        qY(y);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        qX(0);
+        qY(0);
+      });
+    });
+  }
 });
 
 // ===== DETAIL CONTENT (populated in Task 3) =====
