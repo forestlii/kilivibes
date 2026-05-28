@@ -766,6 +766,33 @@ function handleContact(e) {
   alert(alertMsg);
 }
 
+// ===== GSAP ANIMATIONS =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Register ScrollTrigger
+  gsap.registerPlugin(ScrollTrigger);
+
+  // --- Hero Load Animation ---
+  const heroTl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+  // 背景视频 Ken Burns
+  heroTl.fromTo('.hero-video', { scale: 1 }, { scale: 1.05, duration: 4, ease: 'none' }, 0);
+
+  // 遮罩渐亮
+  heroTl.fromTo('.hero-overlay', { opacity: 0.6 }, { opacity: 0.4, duration: 1.2 }, 0);
+
+  // 图标落下
+  heroTl.from('.hero-icon', { y: -30, opacity: 0, duration: 0.6, ease: 'back.out(1.7)' }, 0.2);
+
+  // 标题滑入
+  heroTl.from('.hero-title', { y: 40, opacity: 0, duration: 0.8, ease: 'power3.out' }, 0.3);
+
+  // 副标题淡入
+  heroTl.from('.hero-subtitle', { opacity: 0, duration: 0.6 }, 0.45);
+
+  // CTA 弹性放大
+  heroTl.from('.hero-cta', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'back.out(1.7)' }, 0.6);
+});
+
 // ===== DETAIL CONTENT (populated in Task 3) =====
 const detailContent = {
   treks: {
