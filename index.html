@@ -827,6 +827,41 @@ document.addEventListener('DOMContentLoaded', () => {
       if (menuOpen) window.toggleMenu();
     });
   });
+
+  // --- Grid Nav Cards ---
+  gsap.from('.grid-card', {
+    scrollTrigger: {
+      trigger: '.grid-nav',
+      start: 'top 85%',
+      once: true
+    },
+    y: 40,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.12,
+    ease: 'back.out(1.4)'
+  });
+
+  // --- Section Labels & Titles ---
+  document.querySelectorAll('.section-label').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      x: -20,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
+
+  document.querySelectorAll('.section-title').forEach(el => {
+    gsap.from(el, {
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      y: 20,
+      opacity: 0,
+      duration: 0.5,
+      ease: 'power2.out'
+    });
+  });
 });
 
 // ===== DETAIL CONTENT (populated in Task 3) =====
