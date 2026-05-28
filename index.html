@@ -266,8 +266,8 @@ body {
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <!-- Replace VIDEO_ID with your YouTube video ID and remove style="display:none" to enable video background -->
-  <iframe class="hero-video" src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=VIDEO_ID&controls=0&showinfo=0&rel=0&playsinline=1" allow="autoplay; fullscreen" style="display:none;" id="heroVideo"></iframe>
+  <!-- Replace 1RHFc8EshUI with your YouTube video ID and remove style="display:none" to enable video background -->
+  <iframe class="hero-video" src="https://www.youtube.com/embed/1RHFc8EshUI?autoplay=1&mute=1&loop=1&playlist=1RHFc8EshUI&controls=0&showinfo=0&rel=0&playsinline=1" allow="autoplay; fullscreen" style="display:none;" id="heroVideo"></iframe>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-icon">&#9968;</div>
@@ -328,7 +328,7 @@ body {
     <p class="about-name">Kauzen "Raga Voice" Geofrey</p>
     <p class="about-role" data-key="about_role">Founder · Guide · Musician</p>
     <div class="video-wrap">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Raga Voice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/1RHFc8EshUI" title="Raga Voice" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </div>
 </section>
@@ -339,8 +339,8 @@ body {
     <h2 class="section-title" data-key="contact_title">Ready for Your Adventure?</h2>
     <p style="color:var(--text-light);text-align:center;" data-key="contact_subtitle">We craft journeys that stay in your soul forever.</p>
     <div class="cta-buttons">
-      <a href="https://wa.me/255XXXXXXXXX" class="btn-outline" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="mailto:info@kilivibes.com" class="btn-fill" data-key="contact_email">Email Us</a>
+      <a href="https://wa.me/255755989822" class="btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:mrkauzeni00@gmail.com" class="btn-fill" data-key="contact_email">Email Us</a>
     </div>
     <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
       <input type="text" name="name" data-key-placeholder="form_name" placeholder="Your Name" required>
@@ -671,7 +671,7 @@ function openDetail(section, id) {
     <p style="color:var(--gold);font-size:13px;letter-spacing:1px;margin-bottom:24px;">${subtitle} · ${item.price}</p>
     ${detailHtml}
     <div style="margin-top:32px;">
-      <a href="https://wa.me/255XXXXXXXXX" class="btn-fill" target="_blank" rel="noopener">${waLabel}</a>
+      <a href="https://wa.me/255755989822" class="btn-fill" target="_blank" rel="noopener">${waLabel}</a>
     </div>`;
   modal.classList.add('open');
   document.body.style.overflow = 'hidden';
@@ -697,7 +697,7 @@ function handleContact(e) {
   const name = form.name.value;
   const email = form.email.value;
   const message = form.message.value;
-  const mailto = `mailto:info@kilivibes.com?subject=Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
+  const mailto = `mailto:mrkauzeni00@gmail.com?subject=Inquiry from ${encodeURIComponent(name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + '\nEmail: ' + email)}`;
   window.location.href = mailto;
   form.reset();
   const alertMsg = (i18n[currentLang] && i18n[currentLang].alert_email) || i18n.en.alert_email;
