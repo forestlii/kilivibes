@@ -404,6 +404,26 @@ const i18n = {
     form_message: "Tell us about your dream adventure...",
     alert_email: "Opening your email client..."
   },
+  sw: {
+    nav_treks: "Mlima", nav_safari: "Safari", nav_activities: "Shughuli za Siku",
+    nav_about: "Kuhusu", nav_contact: "Mawasiliano",
+    hero_subtitle: "PAA LA AFRIKA", hero_cta: "Gundua Safari",
+    grid_treks: "Mlima", grid_safari: "Safari",
+    grid_activities: "Shughuli za Siku", grid_about: "Kuhusu Raga Voice",
+    treks_label: "Mlima", treks_title: "Shinda Paa la Afrika",
+    safari_label: "Safari", safari_title: "Shuhudia Pori",
+    activities_label: "Shughuli za Siku", activities_title: "Gundua Zaidi ya Kilele",
+    about_label: "Kuhusu", about_title: "Kutana na Raga Voice",
+    about_quote: "\"Safari yako haiongozwi tu — ina wimbo wake.\"",
+    about_role: "Mwanzilishi · Kiongozi · Mwanamuziki",
+    contact_title: "Tayari kwa Safari Yako?",
+    contact_subtitle: "Tunaunda safari zinazokaa katika nafsi yako milele.",
+    contact_email: "Tuma Barua Pepe", form_send: "Tuma Ujumbe",
+    footer_location: "Arusha · Tanzania · © 2026",
+    form_name: "Jina Lako", form_email: "Barua Pepe Yako",
+    form_message: "Tuambie kuhusu safari yako ya ndoto...",
+    alert_email: "Inafungua programu ya barua pepe..."
+  },
   zh: {
     nav_treks: "登山路线", nav_safari: "野生动物园", nav_activities: "一日游",
     nav_about: "关于我们", nav_contact: "联系我们",
@@ -486,8 +506,8 @@ const i18n = {
   }
 };
 
-const langNames = { en: 'English', zh: '中文', fr: 'Français', nl: 'Nederlands', it: 'Italiano' };
-const langCodes = ['en', 'zh', 'fr', 'nl', 'it'];
+const langNames = { en: 'English', sw: 'Kiswahili', zh: '中文', fr: 'Français', nl: 'Nederlands', it: 'Italiano' };
+const langCodes = ['en', 'sw', 'zh', 'fr', 'nl', 'it'];
 
 let currentLang = 'en';
 
@@ -497,7 +517,7 @@ function toggleLang() {
   const btn = document.getElementById('langToggle');
   const nextIdx = (langCodes.indexOf(currentLang) + 1) % langCodes.length;
   btn.textContent = langNames[langCodes[nextIdx]];
-  document.documentElement.lang = currentLang === 'zh' ? 'zh' : currentLang === 'fr' ? 'fr' : currentLang === 'nl' ? 'nl' : currentLang === 'it' ? 'it' : 'en';
+  document.documentElement.lang = currentLang;
   applyTranslations();
 }
 
@@ -533,33 +553,33 @@ document.querySelectorAll('#navLinks a').forEach(link => {
 
 // ===== CONTENT DATA =====
 const treksData = [
-  { id: 'machame', title: { en: "Machame Route", zh: "马查姆路线", fr: "Route Machame", nl: "Machame Route", it: "Via Machame" }, subtitle: { en: "\"The Whisky Route\" — 6 Days", zh: "\"威士忌路线\" — 6天", fr: "\"La Route du Whisky\" — 6 Jours", nl: "\"De Whisky Route\" — 6 Dagen", it: "\"La Via del Whisky\" — 6 Giorni" }, price: "From $1,800", img: null },
-  { id: 'lemosho', title: { en: "Lemosho Route", zh: "莱莫绍路线", fr: "Route Lemosho", nl: "Lemosho Route", it: "Via Lemosho" }, subtitle: { en: "8 Days · 95% Summit Success", zh: "8天 · 95%登顶成功率", fr: "8 Jours · 95% de Réussite au Sommet", nl: "8 Dagen · 95% Top Succespercentage", it: "8 Giorni · 95% Successo in Vetta" }, price: "From $2,400", img: null },
-  { id: 'londorossi', title: { en: "Londorossi Route", zh: "隆多罗西路", fr: "Route Londorossi", nl: "Londorossi Route", it: "Via Londorossi" }, subtitle: { en: "10 Days · Ultimate Acclimatization", zh: "10天 · 最佳适应路线", fr: "10 Jours · Acclimatation Ultime", nl: "10 Dagen · Ultieme Acclimatisatie", it: "10 Giorni · Acclimatazione Perfetta" }, price: "From $2,800", img: null },
-  { id: 'marangu', title: { en: "Marangu Route", zh: "马兰古路线", fr: "Route Marangu", nl: "Marangu Route", it: "Via Marangu" }, subtitle: { en: "\"Coca-Cola Route\" — 6 Days", zh: "\"可口可乐路线\" — 6天", fr: "\"Route Coca-Cola\" — 6 Jours", nl: "\"Coca-Cola Route\" — 6 Dagen", it: "\"Via Coca-Cola\" — 6 Giorni" }, price: "From $1,600", img: null },
-  { id: 'rongai', title: { en: "Rongai Route", zh: "荣盖路线", fr: "Route Rongai", nl: "Rongai Route", it: "Via Rongai" }, subtitle: { en: "6 Days · Wild Northern Slopes", zh: "6天 · 原始北坡", fr: "6 Jours · Versants Nord Sauvages", nl: "6 Dagen · Wilde Noordelijke Helllingen", it: "6 Giorni · Selvaggi Pendii Settentrionali" }, price: "From $1,900", img: null },
-  { id: 'umbwe', title: { en: "Umbwe Route", zh: "翁布韦路线", fr: "Route Umbwe", nl: "Umbwe Route", it: "Via Umbwe" }, subtitle: { en: "The Ultimate Challenge", zh: "终极挑战", fr: "Le Défi Ultime", nl: "De Ultieme Uitdaging", it: "La Sfida Definitiva" }, price: "From $1,800", img: null },
-  { id: 'longido', title: { en: "Longido Cultural Hike", zh: "隆吉多文化之旅", fr: "Randonnée Culturelle Longido", nl: "Longido Culturele Trektocht", it: "Escursione Culturale Longido" }, subtitle: { en: "Maasai Culture & Mountain Hike", zh: "马赛文化与登山", fr: "Culture Maasaï & Randonnée", nl: "Maasai Cultuur & Bergwandeling", it: "Cultura Maasai & Escursione" }, price: "From $600", img: null },
-  { id: 'meru', title: { en: "Mount Meru", zh: "梅鲁山", fr: "Mont Méru", nl: "Mount Meru", it: "Monte Meru" }, subtitle: { en: "Tanzania's Wild Prelude to Kili", zh: "乞力马扎罗的狂野前奏", fr: "Le Prélude Sauvage du Kili", nl: "Tanzania's Wilde Prelude op de Kili", it: "Il Selvaggio Preludio del Kili" }, price: "From $1,200", img: null }
+  { id: 'machame', title: { en: "Machame Route", sw: "Njia ya Machame", zh: "马查姆路线", fr: "Route Machame", nl: "Machame Route", it: "Via Machame" }, subtitle: { en: "\"The Whisky Route\" — 6 Days", sw: "\"Njia ya Whisky\" — Siku 6", zh: "\"威士忌路线\" — 6天", fr: "\"La Route du Whisky\" — 6 Jours", nl: "\"De Whisky Route\" — 6 Dagen", it: "\"La Via del Whisky\" — 6 Giorni" }, price: "From $1,800", img: null },
+  { id: 'lemosho', title: { en: "Lemosho Route", sw: "Njia ya Lemosho", zh: "莱莫绍路线", fr: "Route Lemosho", nl: "Lemosho Route", it: "Via Lemosho" }, subtitle: { en: "8 Days · 95% Summit Success", sw: "Siku 8 · Mafanikio 95% ya Kilele", zh: "8天 · 95%登顶成功率", fr: "8 Jours · 95% de Réussite au Sommet", nl: "8 Dagen · 95% Top Succespercentage", it: "8 Giorni · 95% Successo in Vetta" }, price: "From $2,400", img: null },
+  { id: 'londorossi', title: { en: "Londorossi Route", sw: "Njia ya Londorossi", zh: "隆多罗西路", fr: "Route Londorossi", nl: "Londorossi Route", it: "Via Londorossi" }, subtitle: { en: "10 Days · Ultimate Acclimatization", sw: "Siku 10 · Uzoeaji Bora wa Mwili", zh: "10天 · 最佳适应路线", fr: "10 Jours · Acclimatation Ultime", nl: "10 Dagen · Ultieme Acclimatisatie", it: "10 Giorni · Acclimatazione Perfetta" }, price: "From $2,800", img: null },
+  { id: 'marangu', title: { en: "Marangu Route", sw: "Njia ya Marangu", zh: "马兰古路线", fr: "Route Marangu", nl: "Marangu Route", it: "Via Marangu" }, subtitle: { en: "\"Coca-Cola Route\" — 6 Days", sw: "\"Njia ya Coca-Cola\" — Siku 6", zh: "\"可口可乐路线\" — 6天", fr: "\"Route Coca-Cola\" — 6 Jours", nl: "\"Coca-Cola Route\" — 6 Dagen", it: "\"Via Coca-Cola\" — 6 Giorni" }, price: "From $1,600", img: null },
+  { id: 'rongai', title: { en: "Rongai Route", sw: "Njia ya Rongai", zh: "荣盖路线", fr: "Route Rongai", nl: "Rongai Route", it: "Via Rongai" }, subtitle: { en: "6 Days · Wild Northern Slopes", sw: "Siku 6 · Miteremko ya Kaskazini", zh: "6天 · 原始北坡", fr: "6 Jours · Versants Nord Sauvages", nl: "6 Dagen · Wilde Noordelijke Helllingen", it: "6 Giorni · Selvaggi Pendii Settentrionali" }, price: "From $1,900", img: null },
+  { id: 'umbwe', title: { en: "Umbwe Route", sw: "Njia ya Umbwe", zh: "翁布韦路线", fr: "Route Umbwe", nl: "Umbwe Route", it: "Via Umbwe" }, subtitle: { en: "The Ultimate Challenge", sw: "Changamoto Kuu", zh: "终极挑战", fr: "Le Défi Ultime", nl: "De Ultieme Uitdaging", it: "La Sfida Definitiva" }, price: "From $1,800", img: null },
+  { id: 'longido', title: { en: "Longido Cultural Hike", sw: "Safari ya Kitamaduni Longido", zh: "隆吉多文化之旅", fr: "Randonnée Culturelle Longido", nl: "Longido Culturele Trektocht", it: "Escursione Culturale Longido" }, subtitle: { en: "Maasai Culture & Mountain Hike", sw: "Utamaduni wa Kimaasai & Mlima", zh: "马赛文化与登山", fr: "Culture Maasaï & Randonnée", nl: "Maasai Cultuur & Bergwandeling", it: "Cultura Maasai & Escursione" }, price: "From $600", img: null },
+  { id: 'meru', title: { en: "Mount Meru", sw: "Mlima Meru", zh: "梅鲁山", fr: "Mont Méru", nl: "Mount Meru", it: "Monte Meru" }, subtitle: { en: "Tanzania's Wild Prelude to Kili", sw: "Utangulizi wa Kili wa Tanzania", zh: "乞力马扎罗的狂野前奏", fr: "Le Prélude Sauvage du Kili", nl: "Tanzania's Wilde Prelude op de Kili", it: "Il Selvaggio Preludio del Kili" }, price: "From $1,200", img: null }
 ];
 
 const safariData = [
-  { id: 'northern-circuit', title: { en: "Northern Circuit 4-Day Safari", zh: "北部环线4日野生动物园", fr: "Safari 4 Jours Circuit Nord", nl: "Northern Circuit 4-Daagse Safari", it: "Safari 4 Giorni Circuito Nord" }, subtitle: { en: "Tarangire · Serengeti · Ngorongoro", zh: "塔兰吉雷 · 塞伦盖蒂 · 恩戈罗恩戈罗", fr: "Tarangire · Serengeti · Ngorongoro", nl: "Tarangire · Serengeti · Ngorongoro", it: "Tarangire · Serengeti · Ngorongoro" }, price: "From $1,500", img: null },
-  { id: 'great-migration', title: { en: "Tracking the Great Migration", zh: "追踪大迁徙", fr: "Sur la Piste de la Grande Migration", nl: "De Grote Migratie Volgen", it: "Seguendo la Grande Migrazione" }, subtitle: { en: "5 Days · Nature's Greatest Show", zh: "5天 · 大自然最壮丽的演出", fr: "5 Jours · Le Plus Grand Spectacle de la Nature", nl: "5 Dagen · De Grootste Show van de Natuur", it: "5 Giorni · Il Più Grande Spettacolo della Natura" }, price: "From $2,200", img: null },
-  { id: 'lake-natron', title: { en: "Lake Natron & Oldonyo Lengai", zh: "纳特龙湖与伦盖火山", fr: "Lac Natron & Oldonyo Lengai", nl: "Lake Natron & Oldonyo Lengai", it: "Lago Natron & Oldonyo Lengai" }, subtitle: { en: "Flamingos & Active Volcano", zh: "火烈鸟与活火山", fr: "Flamants Roses & Volcan Actif", nl: "Flamingo's & Actieve Vulkaan", it: "Fenicotteri & Vulcano Attivo" }, price: "From $800", img: null },
-  { id: 'elephants-beaches', title: { en: "Elephants, Lions & White Beaches", zh: "大象、狮子与白沙滩", fr: "Éléphants, Lions & Plages Blanches", nl: "Olifanten, Leeuwen & Witte Stranden", it: "Elefanti, Leoni & Spiagge Bianche" }, subtitle: { en: "Bush to Beach Adventure", zh: "丛林到海滩的冒险", fr: "Aventure de la Brousse à la Plage", nl: "Avontuur van Bush naar Strand", it: "Avventura dalla Savana alla Spiaggia" }, price: "From $3,000", img: null },
-  { id: 'lake-eyasi', title: { en: "Lake Eyasi Day Trip", zh: "埃亚西湖一日游", fr: "Excursion au Lac Eyasi", nl: "Lake Eyasi Dagexcursie", it: "Escursione al Lago Eyasi" }, subtitle: { en: "Meet the Hadza Hunter-Gatherers", zh: "探访哈扎狩猎采集部落", fr: "Rencontrez les Chasseurs-Cueilleurs Hadza", nl: "Ontmoet de Hadza Jager-Verzamelaars", it: "Incontra i Cacciatori-Raccoglitori Hadza" }, price: "From $400", img: null },
-  { id: 'mkomazi', title: { en: "Mkomazi National Park", zh: "姆科马齐国家公园", fr: "Parc National de Mkomazi", nl: "Mkomazi Nationaal Park", it: "Parco Nazionale Mkomazi" }, subtitle: { en: "Tanzania's Hidden Wildlife Sanctuary", zh: "坦桑尼亚隐秘的野生动物保护区", fr: "Le Sanctuaire Caché de Tanzanie", nl: "Tanzania's Verborgen Wildreservaat", it: "Il Santuario Nascosto della Tanzania" }, price: "From $600", img: null },
-  { id: 'usambara', title: { en: "Eastern & Western Usambara", zh: "东西乌桑巴拉山", fr: "Usambara Est & Ouest", nl: "Oostelijke & Westelijke Usambara", it: "Usambara Orientale & Occidentale" }, subtitle: { en: "Rainforest Mountains & Culture", zh: "雨林山脉与文化之旅", fr: "Montagnes de Forêt Tropicale & Culture", nl: "Regenwoud Bergen & Cultuur", it: "Montagne della Foresta Pluviale & Cultura" }, price: "From $500", img: null },
-  { id: 'northern-circuit-great', title: { en: "Northern Circuit Great Migration", zh: "北部大迁徙之旅", fr: "Grande Migration Circuit Nord", nl: "Northern Circuit Great Migration", it: "Grande Migrazione Circuito Nord" }, subtitle: { en: "Big Cats, Maasai & Stunning Landscapes", zh: "大型猫科动物、马赛人与壮美风景", fr: "Grands Félins, Maasaï & Paysages Époustouflants", nl: "Grote Katten, Maasai & Adembenemende Landschappen", it: "Grandi Felini, Maasai & Paesaggi Mozzafiato" }, price: "From $1,800", img: null }
+  { id: 'northern-circuit', title: { en: "Northern Circuit 4-Day Safari", sw: "Safari ya Siku 4 Kaskazini", zh: "北部环线4日野生动物园", fr: "Safari 4 Jours Circuit Nord", nl: "Northern Circuit 4-Daagse Safari", it: "Safari 4 Giorni Circuito Nord" }, subtitle: { en: "Tarangire · Serengeti · Ngorongoro", zh: "塔兰吉雷 · 塞伦盖蒂 · 恩戈罗恩戈罗", fr: "Tarangire · Serengeti · Ngorongoro", nl: "Tarangire · Serengeti · Ngorongoro", it: "Tarangire · Serengeti · Ngorongoro" }, price: "From $1,500", img: null },
+  { id: 'great-migration', title: { en: "Tracking the Great Migration", sw: "Kufuatilia Uhamiaji Mkuu", zh: "追踪大迁徙", fr: "Sur la Piste de la Grande Migration", nl: "De Grote Migratie Volgen", it: "Seguendo la Grande Migrazione" }, subtitle: { en: "5 Days · Nature's Greatest Show", sw: "Siku 5 · Onyesho Kuu la Asili", zh: "5天 · 大自然最壮丽的演出", fr: "5 Jours · Le Plus Grand Spectacle de la Nature", nl: "5 Dagen · De Grootste Show van de Natuur", it: "5 Giorni · Il Più Grande Spettacolo della Natura" }, price: "From $2,200", img: null },
+  { id: 'lake-natron', title: { en: "Lake Natron & Oldonyo Lengai", sw: "Ziwa Natron & Oldonyo Lengai", zh: "纳特龙湖与伦盖火山", fr: "Lac Natron & Oldonyo Lengai", nl: "Lake Natron & Oldonyo Lengai", it: "Lago Natron & Oldonyo Lengai" }, subtitle: { en: "Flamingos & Active Volcano", sw: "Flamingo & Volkano Inayotumika", zh: "火烈鸟与活火山", fr: "Flamants Roses & Volcan Actif", nl: "Flamingo's & Actieve Vulkaan", it: "Fenicotteri & Vulcano Attivo" }, price: "From $800", img: null },
+  { id: 'elephants-beaches', title: { en: "Elephants, Lions & White Beaches", sw: "Tembo, Simba & Fukwe Nyeupe", zh: "大象、狮子与白沙滩", fr: "Éléphants, Lions & Plages Blanches", nl: "Olifanten, Leeuwen & Witte Stranden", it: "Elefanti, Leoni & Spiagge Bianche" }, subtitle: { en: "Bush to Beach Adventure", sw: "Safari ya Porini hadi Fukwe", zh: "丛林到海滩的冒险", fr: "Aventure de la Brousse à la Plage", nl: "Avontuur van Bush naar Strand", it: "Avventura dalla Savana alla Spiaggia" }, price: "From $3,000", img: null },
+  { id: 'lake-eyasi', title: { en: "Lake Eyasi Day Trip", sw: "Safari ya Siku Ziwa Eyasi", zh: "埃亚西湖一日游", fr: "Excursion au Lac Eyasi", nl: "Lake Eyasi Dagexcursie", it: "Escursione al Lago Eyasi" }, subtitle: { en: "Meet the Hadza Hunter-Gatherers", sw: "Kutana na Wawindaji-Wakusanyaji Wahadza", zh: "探访哈扎狩猎采集部落", fr: "Rencontrez les Chasseurs-Cueilleurs Hadza", nl: "Ontmoet de Hadza Jager-Verzamelaars", it: "Incontra i Cacciatori-Raccoglitori Hadza" }, price: "From $400", img: null },
+  { id: 'mkomazi', title: { en: "Mkomazi National Park", sw: "Hifadhi ya Taifa Mkomazi", zh: "姆科马齐国家公园", fr: "Parc National de Mkomazi", nl: "Mkomazi Nationaal Park", it: "Parco Nazionale Mkomazi" }, subtitle: { en: "Tanzania's Hidden Wildlife Sanctuary", sw: "Hifadhi ya Wanyama Iliyofichwa ya Tanzania", zh: "坦桑尼亚隐秘的野生动物保护区", fr: "Le Sanctuaire Caché de Tanzanie", nl: "Tanzania's Verborgen Wildreservaat", it: "Il Santuario Nascosto della Tanzania" }, price: "From $600", img: null },
+  { id: 'usambara', title: { en: "Eastern & Western Usambara", sw: "Usambara Mashariki & Magharibi", zh: "东西乌桑巴拉山", fr: "Usambara Est & Ouest", nl: "Oostelijke & Westelijke Usambara", it: "Usambara Orientale & Occidentale" }, subtitle: { en: "Rainforest Mountains & Culture", sw: "Milima ya Msitu wa Mvua & Utamaduni", zh: "雨林山脉与文化之旅", fr: "Montagnes de Forêt Tropicale & Culture", nl: "Regenwoud Bergen & Cultuur", it: "Montagne della Foresta Pluviale & Cultura" }, price: "From $500", img: null },
+  { id: 'northern-circuit-great', title: { en: "Northern Circuit Great Migration", sw: "Uhamiaji Mkuu wa Kaskazini", zh: "北部大迁徙之旅", fr: "Grande Migration Circuit Nord", nl: "Northern Circuit Great Migration", it: "Grande Migrazione Circuito Nord" }, subtitle: { en: "Big Cats, Maasai & Stunning Landscapes", sw: "Paka Wakubwa, Wamaasai & Mandhari ya Kuvutia", zh: "大型猫科动物、马赛人与壮美风景", fr: "Grands Félins, Maasaï & Paysages Époustouflants", nl: "Grote Katten, Maasai & Adembenemende Landschappen", it: "Grandi Felini, Maasai & Paesaggi Mozzafiato" }, price: "From $1,800", img: null }
 ];
 
 const activitiesData = [
-  { id: 'farm-coffee', title: { en: "Arusha Farm Walk & Coffee Tour", zh: "阿鲁沙农场与咖啡之旅", fr: "Visite de Ferme & Tour du Café à Arusha", nl: "Arusha Boerderijwandeling & Koffietour", it: "Passeggiata in Fattoria & Tour del Caffè" }, subtitle: { en: "Farm-to-Cup Coffee Experience", zh: "从农场到杯中的咖啡体验", fr: "Expérience Café de la Ferme à la Tasse", nl: "Koffie-ervaring van Boerderij tot Kopje", it: "Esperienza di Caffè dalla Fattoria alla Tazza" }, price: "From $80", img: null },
-  { id: 'maji-moto', title: { en: "Arusha, Ngorongoro & Maji Moto", zh: "阿鲁沙、恩戈罗恩戈罗与温泉", fr: "Arusha, Ngorongoro & Maji Moto", nl: "Arusha, Ngorongoro & Maji Moto", it: "Arusha, Ngorongoro & Maji Moto" }, subtitle: { en: "Geothermal Paradise & Hot Springs", zh: "地热天堂与温泉", fr: "Paradis Géothermal & Sources Chaudes", nl: "Geothermisch Paradijs & Warmwaterbronnen", it: "Paradiso Geotermico & Sorgenti Termali" }, price: "From $120", img: null },
-  { id: 'lake-duluti', title: { en: "Lake Duluti Day Trip", zh: "杜鲁提湖一日游", fr: "Excursion au Lac Duluti", nl: "Lake Duluti Dagexcursie", it: "Escursione al Lago Duluti" }, subtitle: { en: "Crater Lake Canoeing & Birdwatching", zh: "火山湖划独木舟与观鸟", fr: "Canoë sur un Lac de Cratère & Observation d'Oiseaux", nl: "Kanovaren op een Kratermeer & Vogels Spotten", it: "Canoa sul Lago del Cratere & Birdwatching" }, price: "From $70", img: null },
-  { id: 'napuru', title: { en: "Napuru Waterfalls", zh: "纳普鲁瀑布", fr: "Cascades de Napuru", nl: "Napuru Watervallen", it: "Cascate di Napuru" }, subtitle: { en: "78m Waterfall in Ancient Rainforest", zh: "原始雨林中78米高的瀑布", fr: "Cascade de 78m dans une Forêt Tropicale Ancienne", nl: "78m Waterval in een Oud Regenwoud", it: "Cascata di 78m nella Foresta Pluviale Antica" }, price: "From $60", img: null },
-  { id: 'raga-voice', title: { en: "Raga Voice Experience", zh: "Raga Voice 音乐体验", fr: "Expérience Raga Voice", nl: "Raga Voice Ervaring", it: "Esperienza Raga Voice" }, subtitle: { en: "Music Meets the Mountain", zh: "当音乐遇见高山", fr: "La Musique Rencontre la Montagne", nl: "Muziek Ontmoet de Berg", it: "La Musica Incontra la Montagna" }, price: "Custom", img: null }
+  { id: 'farm-coffee', title: { en: "Arusha Farm Walk & Coffee Tour", sw: "Safari ya Shamba & Kahawa Arusha", zh: "阿鲁沙农场与咖啡之旅", fr: "Visite de Ferme & Tour du Café à Arusha", nl: "Arusha Boerderijwandeling & Koffietour", it: "Passeggiata in Fattoria & Tour del Caffè" }, subtitle: { en: "Farm-to-Cup Coffee Experience", sw: "Uzoefu wa Kahawa Shambani hadi Kikombe", zh: "从农场到杯中的咖啡体验", fr: "Expérience Café de la Ferme à la Tasse", nl: "Koffie-ervaring van Boerderij tot Kopje", it: "Esperienza di Caffè dalla Fattoria alla Tazza" }, price: "From $80", img: null },
+  { id: 'maji-moto', title: { en: "Arusha, Ngorongoro & Maji Moto", zh: "阿鲁沙、恩戈罗恩戈罗与温泉", fr: "Arusha, Ngorongoro & Maji Moto", nl: "Arusha, Ngorongoro & Maji Moto", it: "Arusha, Ngorongoro & Maji Moto" }, subtitle: { en: "Geothermal Paradise & Hot Springs", sw: "Paradiso ya Jotoardhi & Chemchemi za Moto", zh: "地热天堂与温泉", fr: "Paradis Géothermal & Sources Chaudes", nl: "Geothermisch Paradijs & Warmwaterbronnen", it: "Paradiso Geotermico & Sorgenti Termali" }, price: "From $120", img: null },
+  { id: 'lake-duluti', title: { en: "Lake Duluti Day Trip", sw: "Safari ya Siku Ziwa Duluti", zh: "杜鲁提湖一日游", fr: "Excursion au Lac Duluti", nl: "Lake Duluti Dagexcursie", it: "Escursione al Lago Duluti" }, subtitle: { en: "Crater Lake Canoeing & Birdwatching", sw: "Mtumbwi kwenye Ziwa la Volkeno & Kutazama Ndege", zh: "火山湖划独木舟与观鸟", fr: "Canoë sur un Lac de Cratère & Observation d'Oiseaux", nl: "Kanovaren op een Kratermeer & Vogels Spotten", it: "Canoa sul Lago del Cratere & Birdwatching" }, price: "From $70", img: null },
+  { id: 'napuru', title: { en: "Napuru Waterfalls", sw: "Maporomoko ya Napuru", zh: "纳普鲁瀑布", fr: "Cascades de Napuru", nl: "Napuru Watervallen", it: "Cascate di Napuru" }, subtitle: { en: "78m Waterfall in Ancient Rainforest", sw: "Maporomoko ya Mita 78 kwenye Msitu wa Kale", zh: "原始雨林中78米高的瀑布", fr: "Cascade de 78m dans une Forêt Tropicale Ancienne", nl: "78m Waterval in een Oud Regenwoud", it: "Cascata di 78m nella Foresta Pluviale Antica" }, price: "From $60", img: null },
+  { id: 'raga-voice', title: { en: "Raga Voice Experience", sw: "Uzoefu wa Raga Voice", zh: "Raga Voice 音乐体验", fr: "Expérience Raga Voice", nl: "Raga Voice Ervaring", it: "Esperienza Raga Voice" }, subtitle: { en: "Music Meets the Mountain", sw: "Muziki Unakutana na Mlima", zh: "当音乐遇见高山", fr: "La Musique Rencontre la Montagne", nl: "Muziek Ontmoet de Berg", it: "La Musica Incontra la Montagna" }, price: "Custom", img: null }
 ];
 
 const dayPhotos = [
@@ -673,8 +693,8 @@ function openDetail(section, id) {
   const subtitle = getLangText(item, 'subtitle');
   const detail = detailContent[section] && detailContent[section][id];
   let detailHtml;
-  const waLabels = { en: 'Inquire on WhatsApp', zh: '在WhatsApp上咨询', fr: 'Contactez-nous sur WhatsApp', nl: 'Informeer op WhatsApp', it: 'Chiedi su WhatsApp' };
-  const comingSoonLabels = { en: 'Full itinerary coming soon. Contact us for details.', zh: '详细行程即将发布，联系我们获取详情。', fr: 'Itinéraire complet à venir. Contactez-nous pour plus de détails.', nl: 'Volledige routebeschrijving binnenkort. Neem contact op voor details.', it: 'Itinerario completo in arrivo. Contattaci per i dettagli.' };
+  const waLabels = { en: 'Inquire on WhatsApp', sw: 'Uliza kwenye WhatsApp', zh: '在WhatsApp上咨询', fr: 'Contactez-nous sur WhatsApp', nl: 'Informeer op WhatsApp', it: 'Chiedi su WhatsApp' };
+  const comingSoonLabels = { en: 'Full itinerary coming soon. Contact us for details.', sw: 'Itinerari kamili inakuja hivi karibuni. Wasiliana nasi kwa maelezo.', zh: '详细行程即将发布，联系我们获取详情。', fr: 'Itinéraire complet à venir. Contactez-nous pour plus de détails.', nl: 'Volledige routebeschrijving binnenkort. Neem contact op voor details.', it: 'Itinerario completo in arrivo. Contattaci per i dettagli.' };
   if (detail) {
     detailHtml = (detail[currentLang] || detail.en || '');
   } else {
