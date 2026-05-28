@@ -275,7 +275,7 @@ body {
     <li><a href="#contact-section" data-key="nav_contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">中文</button>
+    <button class="lang-toggle" id="langToggle" onclick="toggleLang()">Kiswahili</button>
     <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">&#9776;</button>
   </div>
 </nav>
@@ -977,6 +977,7 @@ const detailContent = {
 };
 
 // ===== INIT =====
+document.getElementById('langToggle').textContent = langNames[langCodes[1]];
 renderTreks();
 renderSafari();
 renderActivities();
