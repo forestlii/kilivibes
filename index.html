@@ -625,7 +625,7 @@ function renderCards(containerId, data, section) {
     const title = getLangText(item, 'title');
     const subtitle = getLangText(item, 'subtitle');
     const bgStyle = item.img
-      ? `background-image:url('${item.img}');background-size:cover;background-position:center;`
+      ? `background-image:url('${encodeURI(item.img)}');background-size:cover;background-position:center;`
       : 'background:linear-gradient(135deg, var(--brown), var(--gold));';
     return `
       <div class="card" onclick="openDetail('${section}', '${item.id}')">
