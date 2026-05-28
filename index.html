@@ -791,6 +791,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // CTA 弹性放大
   heroTl.from('.hero-cta', { scale: 0.8, opacity: 0, duration: 0.5, ease: 'back.out(1.7)' }, 0.6);
+
+  // --- Mobile Menu Animation ---
+  let menuOpen = false;
+  let menuTween = null;
+
+  window.toggleMenu = function() {
+    const navLinks = document.getElementById('navLinks');
+    menuOpen = !menuOpen;
+    if (menuTween) menuTween.kill();
+    if (menuOpen) {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = 'var(--nav-h)';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'var(--white)';
+      navLinks.style.padding = '24px 32px';
+      navLinks.style.gap = '16px';
+      navLinks.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+      menuTween = gsap.fromTo(navLinks, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+    } else {
+      menuTween = gsap.to(navLinks, { y: -20, opacity: 0, duration: 0.2, ease: 'power2.in', onComplete: () => {
+        navLinks.style.display = 'none';
+        navLinks.style.opacity = '';
+        navLinks.style.transform = '';
+      }});
+    }
+  };
+
+  // Keep existing link click close behavior — update to be GSAP-aware
+  document.querySelectorAll('#navLinks a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (menuOpen) window.toggleMenu();
+    });
+  });
 });
 
 // ===== DETAIL CONTENT (populated in Task 3) =====
