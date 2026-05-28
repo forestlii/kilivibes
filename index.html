@@ -37,10 +37,18 @@ body {
 }
 .nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 1px 0 var(--border); }
 .nav-logo {
-  font-weight: 700; font-size: 15px; letter-spacing: 1px;
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; font-size: 14px; letter-spacing: 0.5px;
   color: #fff; text-decoration: none; transition: color 0.3s;
 }
+.nav-logo svg { flex-shrink: 0; }
+.nav-logo svg .logo-mountain { fill: #fff; transition: fill 0.3s; }
+.nav-logo svg .logo-snow { fill: var(--cream); transition: fill 0.3s; }
+.nav-logo svg .logo-sun { fill: var(--gold); transition: fill 0.3s; }
 .nav.scrolled .nav-logo { color: var(--brown); }
+.nav.scrolled .nav-logo svg .logo-mountain { fill: var(--brown); }
+.nav.scrolled .nav-logo svg .logo-snow { fill: #fff; }
+.nav.scrolled .nav-logo svg .logo-sun { fill: var(--gold); }
 .nav-links {
   display: flex; gap: 24px; list-style: none;
   font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -250,7 +258,14 @@ body {
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <a href="#hero" class="nav-logo">KILI VIBES</a>
+  <a href="#hero" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
+      <circle class="logo-sun" cx="38" cy="16" r="10" opacity="0.3"/>
+      <polygon class="logo-mountain" points="4,38 18,12 28,26 34,10 52,38"/>
+      <polygon class="logo-snow" points="28,26 30,18 32,13 34,10 36,14 37,20 36,26"/>
+    </svg>
+    KILI VIBES ADVENTURES
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#treks-section" data-key="nav_treks">Mountaineering</a></li>
     <li><a href="#safari-section" data-key="nav_safari">Safari</a></li>
@@ -353,7 +368,7 @@ body {
 
 <!-- FOOTER -->
 <footer class="footer">
-  <span>KILI VIBES & ADVENTURES</span>
+  <span>KILI VIBES ADVENTURES</span>
   <span data-key="footer_location">Arusha · Tanzania · © 2026</span>
 </footer>
 
